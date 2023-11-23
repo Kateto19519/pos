@@ -20,14 +20,14 @@ Builder.load_string('''
                     rgba: rgba("#f2f2f2")
                 Ellipse:
                     size: self.size[0], self.size[1]
-                    posApp: self.posApp
+                    pos: self.pos
             Widget:
                 canvas.after:
                     Color:
                         rgba: [1,1,1,1]
                     Ellipse:
                         size: self.size[0], self.size[1]
-                        posApp: self.posApp
+                        pos: self.pos
                         texture: proxy.texture
 
 <AvatarStack>:

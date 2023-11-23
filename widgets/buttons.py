@@ -18,7 +18,7 @@ Builder.load_string("""
         Color:
             rgba: [1,1,1,1]
         Rectangle:
-            posApp: self.posApp
+            pos: self.pos
             size: self.size
             source: self.source
 
@@ -35,7 +35,7 @@ Builder.load_string("""
         Color:
             rgba: self.bcolor
         Ellipse:
-            posApp: self.posApp
+            pos: self.pos
             size: self.size
 """)
 class FlatButton(Button):

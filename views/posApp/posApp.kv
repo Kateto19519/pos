@@ -1,76 +1,94 @@
-<posApp>:
-   BoxLayout:
-      orientation:'horizontal'
-
-      BoxLayout:
-         orientation:'vertical'
-         size_hint_x: 0.35
-         canvas.before:
-            Color:
-               rgba: app.color_secondary
-            Rectangle:
-               pos:self.pos
-               size: self.size
-
-         AnchorLayout:
-            size_hint_y:None
-            anchor_y:"top"
-#            padding: dp(24)
-            anchor_x:"left"
-            Text:
-
-               text: "POS SYSTEM"
-               font_size: app.fonts.size.h2
-               valign: "top"
-               halign: "center"
-               color: app.color_primary_text
-
-            Image:
-               source:"assets/imgs/logo-light.png"
-         BoxLayout:
-            orientation:'vertical'
-
-            MDToolbar:
-               title:"Bottom Navbar"
-
-            MDBottomNavigation:
-
-               MDBottomNavigationItem:
-                  name:"screen 1"
-                  text: "Dashboard"
-
-#            Button:
-#               text: "Dashboard"
-#            Button:
-#               text: "Tables"
-#            Button:
-#               text:"Staff"
-
-
-
-
-      BoxLayout:
-         orientation:'horizontal'
-
-
-#
-#
+#<posApp>:
+#   id:posApp
 #   BoxLayout:
-#      orientation: 'horizontal'
-#      size_hint_x: 0.2
-#      canvas.before:
-#          Color:                rgba: 0, 0, 1, 1
+#      orientation:'horizontal'
+#
+#      BoxLayout:
+#         orientation:'vertical'
+#         size_hint_x: 0.35
+#         canvas.before:
+#            Color:
+#               rgba: app.color_secondary
 #            Rectangle:
-#                pos: self.pos
-#                size: self.size
+#               pos:self.pos
+#               size: self.size
+#
+#         AnchorLayout:
+#            size_hint_y:None
+#            anchor_y:"top"
+##            padding: dp(24)
+#            anchor_x:"left"
+#            Text:
+#               text: "POS SYSTEM"
+#               font_size: app.fonts.size.h2
+#               valign: "top"
+#               halign: "center"
+#               color: app.color_primary_text
+#
+#            Image:
+#               source:"assets/imgs/logo-light.png"
+#
+#
+#         BoxLayout:
+#            orientation:'vertical'
+#         MDNavigationDrawer:
+#            NavigationDrawerIconButton:
+#               icon: 'menu'
+#               on_release:app.root.toggle_nav_drawer()
+#            NavigationDrawerIconButton:
+#               icon:'account'
+#               text: 'Account'
+#               on_release: app.root.ids.nav_drawer.set_state("close")
+#            NavigationDrawerIconButton:
+#               icon: 'settings'
+#               text: 'Settings'
+#               on_release: app.root.ids.nav_drawer.set_state("close")
+#
+#
 #   BoxLayout:
-#      id: content_container
-#      orientation: 'horizontal'
-#      canvas.before:
-#          Color:
-#              rgba: 1, 1, 1, 1
-#          Rectangle:
-#              pos: self.pos
-#              size: self.size
-#
-#
+#      orientation:'horizontal'
+
+
+
+
+
+# views/posApp/posApp.kv
+
+<PosApp>:
+    orientation: 'horizontal'
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.35
+        canvas.before:
+            Color:
+                rgba: app.color_secondary
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDNavigationDrawer:
+            NavigationDrawerIconButton:
+                icon: 'menu'
+                on_release: app.root.toggle_nav_drawer()
+            NavigationDrawerIconButton:
+                icon: 'account'
+                text: 'Account'
+                on_release: app.root.ids.nav_drawer.set_state("close")
+            NavigationDrawerIconButton:
+                icon: 'settings'
+                text: 'Settings'
+                on_release: app.root.ids.nav_drawer.set_state("close")
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+
+
+
+
+
+
+
+
+

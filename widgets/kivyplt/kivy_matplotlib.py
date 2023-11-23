@@ -211,7 +211,7 @@ Builder.load_string('''
         Color:
             rgb: (1, 1, 1)
         Rectangle:
-            posApp: self.posApp
+            pos: self.pos
             size: self.size
             texture: self._img_texture
         Color:

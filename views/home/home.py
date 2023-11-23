@@ -5,6 +5,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.metrics import dp, sp
 from kivy.utils import rgba, QueryDict
+from views.posApp.posApp import PosApp
 
 from kivy.clock import Clock, mainthread
 

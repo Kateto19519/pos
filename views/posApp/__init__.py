@@ -1,1 +1,1 @@
-from .posApp import posApp
+from .posApp import PosApp

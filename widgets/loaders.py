@@ -29,7 +29,7 @@ Builder.load_string("""
             Color:
                 rgba: [1,1,1,1]
             RoundedRectangle:
-                posApp: self.posApp
+                pos: self.pos
                 size: self.size
                 radius: [dp(12)]
         SoftBox:
@@ -105,7 +105,7 @@ Builder.load_string("""
                 Color:
                     rgba: root.bcolor
                 RoundedRectangle:
-                    posApp: self.posApp
+                    pos: self.pos
                     size: self.size
                     radius: [self.height*.1]
             Label:
@@ -137,7 +137,7 @@ Builder.load_string("""
                 Color:
                     rgba: root.bcolor
                 RoundedRectangle:
-                    posApp: self.posApp
+                    pos: self.pos
                     size: self.size
                     radius: [self.height*.1]
             Label:

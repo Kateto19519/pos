@@ -11,7 +11,7 @@ Builder.load_string('''
         Color:
             rgba: self.bcolor
         RoundedRectangle:
-            posApp: self.posApp
+            pos: self.pos
             size: self.size
             radius: self.radius
 ''')
