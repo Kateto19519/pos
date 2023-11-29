@@ -16,7 +16,7 @@ Builder.load_string('''
             Color:
                 rgba: rgba("#f2f2f2") if root.show_xaxis else [0,0,0,0]
             Rectangle:
-                posApp: [self.posApp[0]+(self.size[0]-dp(1)), self.posApp[1]+dp(24)]
+                pos: [self.pos[0]+(self.size[0]-dp(1)), self.pos[1]+dp(24)]
                 size: [dp(1), self.size[1]-dp(24)]
     BoxLayout:
         orientation: 'vertical'
@@ -32,7 +32,7 @@ Builder.load_string('''
                 Color:
                     rgba: rgba("#f2f2f2") if root.show_yaxis else [0,0,0,0]
                 Rectangle:
-                    posApp: [self.posApp[0], self.posApp[1]+(self.size[1]-dp(1))]
+                    pos: [self.pos[0], self.pos[1]+(self.size[1]-dp(1))]
                     size: [self.size[0], dp(1)]
 
 <Bar>:

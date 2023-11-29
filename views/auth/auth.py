@@ -4,7 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-
+from kivymd.app import MDApp
 Builder.load_file("views/auth/auth.kv")
 class Auth(BoxLayout):
     def __init__(self, **kw):

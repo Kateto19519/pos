@@ -1,94 +1,106 @@
-#<posApp>:
-#   id:posApp
-#   BoxLayout:
-#      orientation:'horizontal'
-#
-#      BoxLayout:
-#         orientation:'vertical'
-#         size_hint_x: 0.35
-#         canvas.before:
-#            Color:
-#               rgba: app.color_secondary
-#            Rectangle:
-#               pos:self.pos
-#               size: self.size
-#
-#         AnchorLayout:
-#            size_hint_y:None
-#            anchor_y:"top"
-##            padding: dp(24)
-#            anchor_x:"left"
-#            Text:
-#               text: "POS SYSTEM"
-#               font_size: app.fonts.size.h2
-#               valign: "top"
-#               halign: "center"
-#               color: app.color_primary_text
-#
-#            Image:
-#               source:"assets/imgs/logo-light.png"
-#
-#
-#         BoxLayout:
-#            orientation:'vertical'
-#         MDNavigationDrawer:
-#            NavigationDrawerIconButton:
-#               icon: 'menu'
-#               on_release:app.root.toggle_nav_drawer()
-#            NavigationDrawerIconButton:
-#               icon:'account'
-#               text: 'Account'
-#               on_release: app.root.ids.nav_drawer.set_state("close")
-#            NavigationDrawerIconButton:
-#               icon: 'settings'
-#               text: 'Settings'
-#               on_release: app.root.ids.nav_drawer.set_state("close")
-#
-#
-#   BoxLayout:
-#      orientation:'horizontal'
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
 
 
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+<ContentNavigationDrawer>
+
+    MDList:
+
+        OneLineListItem:
+            text: "Tables"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "tables"
 
 
+        OneLineListItem:
+            text: "Screen 2"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "scr 2"
 
-# views/posApp/posApp.kv
 
 <PosApp>:
-    orientation: 'horizontal'
 
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint_x: 0.35
-        canvas.before:
-            Color:
-                rgba: app.color_secondary
-            Rectangle:
-                pos: self.pos
-                size: self.size
+    MDScreen:
 
-        MDNavigationDrawer:
-            NavigationDrawerIconButton:
-                icon: 'menu'
-                on_release: app.root.toggle_nav_drawer()
-            NavigationDrawerIconButton:
-                icon: 'account'
-                text: 'Account'
-                on_release: app.root.ids.nav_drawer.set_state("close")
-            NavigationDrawerIconButton:
-                icon: 'settings'
-                text: 'Settings'
-                on_release: app.root.ids.nav_drawer.set_state("close")
+        MDTopAppBar:
+            pos_hint: {"top": 1}
+            elevation: 4
+            title: "Menu"
+            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
-    BoxLayout:
-        orientation: 'horizontal'
+        MDNavigationLayout:
+
+            MDScreenManager:
+                id: screen_manager
+
+                MDScreen:
+                    name: "tables"
+
+                    MDLabel:
+                        text: "Tables"
+                        halign: "center"
 
 
+                MDScreen:
+                    name: "scr 2"
 
+                    MDLabel:
+                        text: "Screen 2"
+                        halign: "center"
 
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: (0, 16, 16, 0)
 
+                ContentNavigationDrawer:
+                    screen_manager: screen_manager
+                    nav_drawer: nav_drawer
 
-
-
-
-
+#        MDTopAppBar:
+#            pos_hint: {"top": 1}
+#            elevation: 4
+#            title: "Menu"
+#            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+#        MDNavigationLayout:
+#            MDNavigationDrawer:
+#                id: nav_drawer
+#                drawer_logo: "C:/Users/dc248/PycharmProjects/pos/assets/imgs/logo-light.png"
+#                md_bg_color: app.theme_cls.primary_color
+#
+#                MDNavigationDrawerMenu:
+#
+#                    MDNavigationDrawerHeader:
+#                        title: "SmartPOS"
+#                        title_color: "#4a4939"
+#                        spacing: "4dp"
+#                        padding: "12dp", 0,0,"56dp"
+#
+#
+#                    MDNavigationDrawerLabel:
+#                        text: "Profile"
+#
+#
+#                    MDNavigationDrawerItem:
+#                        icon: "Dashboard"
+#
+#                    MDNavigationDrawerItem:
+#                        icon: "Food&Drinks"
+#
+#
+#    MDIconButton:
+#        icon:"language-python"
+#        pos_hint: {"center_x":.5, "center_y":.5}
+#

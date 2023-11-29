@@ -218,7 +218,7 @@ Builder.load_string('''
             rgba: 1, 0, 0, 0.5
         BorderImage:
             source: 'border.png'
-            posApp: self._box_pos
+            pos: self._box_pos
             size: self._box_size
             border: 3, 3, 3, 3
 

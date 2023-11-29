@@ -1,12 +1,12 @@
 
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.utils import QueryDict, rgba
 from kivy.metrics import dp, sp
 from kivy.properties import ColorProperty, ListProperty
 
 from .view import MainWindow
 
-class MainApp(App):
+class MainApp(MDApp):
     theme = "light"
     color_primary = ColorProperty(rgba("#3B0BFB"))
     color_secondary = ColorProperty(rgba("#65DDB2"))

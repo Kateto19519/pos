@@ -1,4 +1,6 @@
 <Auth>:
+
+
    BoxLayout:
       orientation:'vertical'
       spacing: dp(24)
@@ -73,12 +75,14 @@
             padding: dp(24)
             size_hint_x: .7
             BackBox:
+
                size_hint_y: None
                height: dp(50)
                bcolor: app.color_secondary_bg
                radius: [self.height* 0.1]
                padding: [dp(12), dp(2)]
                FlatField:
+                  left_icon: "account"
                   hint_text: "username"
                   hint_text_color: app.color_primary_text
                   font_size: app.fonts.size.h3
@@ -95,6 +99,7 @@
                   font_size: app.fonts.size.h3
                   password:True
                   multiline:False
+                  left_icon: 'lock'
             BackBox:
                size_hint_y:None
                height: dp(64)

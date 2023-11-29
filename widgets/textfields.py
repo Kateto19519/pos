@@ -68,10 +68,10 @@ class OutlineTextField(FlatField):
                 width=dp(1.5),
                 rounded_rectangle=[self.pos[0], self.pos[1], self.size[0], self.size[1], self.radius[0]]
             )
-            # self.border_draw = RoundedRectangle(posApp=self.posApp, size=self.size, radius=self.radius)
+            # self.border_draw = RoundedRectangle(pos=self.pos, size=self.size, radius=self.radius)
             # self.back_color = Color(rgba=self.main_color)
             # self.back_draw = RoundedRectangle(
-            #     posApp=[self.posApp[0]+1.5, self.posApp[1]+1.5],
+            #     pos=[self.pos[0]+1.5, self.pos[1]+1.5],
             #     size=[self.size[0]-3, self.size[1]-3], 
             #     radius=self.radius
             #     )

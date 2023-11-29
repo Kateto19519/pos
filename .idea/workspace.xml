@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c20bcaf-6729-42ad-840d-f523cda50087" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/garden/garden.iconfonts/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/garden/garden.iconfonts/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/auth/auth.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/auth.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/auth/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/home.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/home.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/posApp/posApp.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/posApp/posApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/barchart.py" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/barchart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/kivyplt/kivy_matplotlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/kivyplt/kivy_matplotlib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/textfields.py" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/textfields.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,15 +46,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/dc248/PycharmProjects/pos",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dc248/PycharmProjects/pos&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pos" />

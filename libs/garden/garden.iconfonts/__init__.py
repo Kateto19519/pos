@@ -46,7 +46,7 @@ BoxLayout:
                 origin: self.center_x , self.center_y
             Rectangle:
                 size: (32, 32)
-                posApp: self.center_x - 16, self.center_y - 16
+                pos: self.center_x - 16, self.center_y - 16
                 texture: self.texture
             PopMatrix
     """
