@@ -19,13 +19,16 @@
 
         OneLineListItem:
             text: "Tables"
+            id: Lock1
+            icon:'lock-open'
+            pos_hint:{"center_x": .1, "center_y": .76}
             on_press:
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "tables"
 
 
         OneLineListItem:
-            text: "Screen 2"
+            text: "Dashboard"
             on_press:
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "scr 2"
@@ -49,10 +52,18 @@
                 MDScreen:
                     name: "tables"
 
-                    MDLabel:
-                        text: "Tables"
-                        halign: "center"
-
+                    MDGridLayout:
+                        cols:2
+                        row_default_height: "48dp"
+                        row_force_default: True
+                        spacing: "4dp"
+                        padding: "4dp"
+                        BoxLayout:
+                            orientation: 'vertical'
+                            spacing: '4dp'
+                            padding: '4dp'
+                            Button:
+                                text:"Table1"
 
                 MDScreen:
                     name: "scr 2"
