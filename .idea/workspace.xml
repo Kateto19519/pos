@@ -7,7 +7,6 @@
     <list default="true" id="1c20bcaf-6729-42ad-840d-f523cda50087" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/posApp/posApp.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/posApp/posApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
