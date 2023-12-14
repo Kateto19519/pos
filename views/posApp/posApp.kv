@@ -1,5 +1,5 @@
 #:import Window kivy.core.window.Window
-#:include tables.kv
+#:include views/posApp/tables.kv
 
 
 <DrawerClickableItem@MDNavigationDrawerItem>
@@ -17,27 +17,36 @@
     _no_ripple_effect: True
 
 
-
-
 <ContentNavigationDrawer>
 
     MDList:
 
-        OneLineListItem:
+        OneLineAvatarListItem:
             text: "Tables"
-            id: Lock1
-            icon:'lock-open'
             pos_hint:{"center_x": .1, "center_y": .76}
             on_press:
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "tables"
+            IconLeftWidget:
+                icon: 'table-chair'
 
 
-        OneLineListItem:
+
+        OneLineAvatarListItem:
             text: "Dashboard"
             on_press:
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "scr 2"
+            IconLeftWidget:
+                icon: 'monitor-dashboard'
+
+        OneLineAvatarListItem:
+            text: "Staff"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "scr 2"
+            IconLeftWidget:
+                icon: 'account'
 
 
 <PosApp>:
@@ -48,8 +57,8 @@
             pos_hint: {"top": 1}
             elevation: 4
             title: "Menu"
-            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
+            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")] ]
+            right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
         MDNavigationLayout:
 
             MDScreenManager:
@@ -59,15 +68,15 @@
                     name: "tables"
 
 
-                    GridLayout:
-                        rows: 8 if Window.width < 500 else 4
+                    Tables:
+                        rows: 8 if Window.width < 500 else 3
                         cols: 2 if Window.width <500 else 4
 #                        rows:4
 #                        cols:4
                         spacing:'70dp'
                         padding:'70dp'
 
-                        Tables:
+
 
                 MDScreen:
                     name: "scr 2"
@@ -84,38 +93,3 @@
                     screen_manager: screen_manager
                     nav_drawer: nav_drawer
 
-#        MDTopAppBar:
-#            pos_hint: {"top": 1}
-#            elevation: 4
-#            title: "Menu"
-#            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-#        MDNavigationLayout:
-#            MDNavigationDrawer:
-#                id: nav_drawer
-#                drawer_logo: "C:/Users/dc248/PycharmProjects/pos/assets/imgs/logo-light.png"
-#                md_bg_color: app.theme_cls.primary_color
-#
-#                MDNavigationDrawerMenu:
-#
-#                    MDNavigationDrawerHeader:
-#                        title: "SmartPOS"
-#                        title_color: "#4a4939"
-#                        spacing: "4dp"
-#                        padding: "12dp", 0,0,"56dp"
-#
-#
-#                    MDNavigationDrawerLabel:
-#                        text: "Profile"
-#
-#
-#                    MDNavigationDrawerItem:
-#                        icon: "Dashboard"
-#
-#                    MDNavigationDrawerItem:
-#                        icon: "Food&Drinks"
-#
-#
-#    MDIconButton:
-#        icon:"language-python"
-#        pos_hint: {"center_x":.5, "center_y":.5}
-#
