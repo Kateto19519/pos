@@ -41,7 +41,7 @@ class MainApp(MDApp):
             self.color_secondary = ColorProperty(rgba("#3FD0B6"))
             self.color_tertiary = ColorProperty(rgba("#E35588"))
             self.color_alternate = ColorProperty(rgba("#BF2FE3"))
-            self.color_primary_bg = ColorProperty(rgba("#33313F"))
+            self.color_primary_bg = ColorProperty(rgba("#E2D0AA"))
             self.color_secondary_bg = ColorProperty(rgba("#3B3947"))
             self.color_primary_text = ColorProperty(rgba("#FFFFFF"))
             self.color_secondary_text = ColorProperty(rgba("#3B3947"))
