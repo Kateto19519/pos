@@ -6,6 +6,7 @@
 #: import FlatField widgets.textfields.FlatField
 #: import RoundedButton widgets.buttons.FlatButton
 #: import FadeTransition  kivy.uix.screenmanager.FadeTransition
+#: import menu views.menu.menu
 
 <MainWindow>:
     orientation: 'vertical'
@@ -26,3 +27,7 @@
             name: 'scrn_home'
             Home:
                 id: home
+        Screen:
+            name:'scrn_menu'
+            Menu:
+                id:menu

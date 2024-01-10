@@ -1,0 +1,72 @@
+#:import hex kivy.utils.get_color_from_hex
+<MenuItem@MDSmartTile>:
+    radius: 24
+    box_radius: [0, 0, 24, 24]
+    box_color: 1, 1, 1, .7
+    size_hint: None, None
+    size: "150dp", "150dp"
+    lines:2 #this specifies how many lines of text the box will hold
+
+<MenuItemInfo@TwoLineListItem>
+
+<MenuTable@BoxLayout>:
+    orientation:'vertical'
+    rows: 8 if Window.width < 500 else 3
+    cols: 2 if Window.width <500 else 2
+#    spacing:'10dp' #space between each element
+#    padding:'10dp'
+    canvas:
+        Color:
+            rgba:hex('#80edd2')
+        Rectangle:
+            size:self.size
+            pos:self.pos
+
+
+
+<ReceiptPlaceholder@MDBoxLayout>:
+    pos_hint: {'right': 1, 'top': 1}
+    adaptive_width: True
+    adaptive_height: True
+    md_bg_color: app.theme_cls.primary_color
+    MDLabel:
+        text: "Table #"
+
+
+<Menu>:
+    MDScreenManager:
+        id: menu_screen
+        MDScreen:
+            MenuTable: #just a grid layout for the table
+                MDBoxLayout:
+                    orientation:'vertical'
+                    size_hint_x:None
+                    width:root.width
+                    size_hint_y:None
+                    Label:
+                        text: "Menu Items"
+                        font_name: app.fonts.styled
+                        font_size: app.fonts.size.h1
+                        color:app.color_primary_text
+
+                        halign:'left'
+                        valign:'top'
+
+#                MDLabel:
+#                    orientation:"horizontal"
+#                    text: "Menu Items"
+#                    font_name: app.fonts.styled
+#                    font_size: app.fonts.size.h1
+#                    halign:'left'
+#                    valign:'top'
+#                    pos_hint: {"center_x": .5, "center_y": .5}
+#                    spacing:'12dp'
+#                    padding:'24dp'
+#                    md_bg_color:1,0,0
+
+                MDBoxLayout:
+                    orientation:'vertical'
+                    Button:
+                        text: "MDRaisedButton"
+                        md_bg_color: "red"
+                        halign:'left'

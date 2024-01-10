@@ -1,4 +1,5 @@
-import kv
+
+from kivy.app import App
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.metrics import dp, sp
 from kivy.utils import rgba, QueryDict
@@ -16,9 +17,13 @@ class PosApp(MDScreen):
     def __init__(self, **kw) ->None:
          super().__init__(**kw)
          Clock.schedule_once(self.render, .1)
+    def menu_appear(self):
+        App.get_running_app().root.ids.scrn_mngr.current= "scrn_menu"
 
     def render(self, _):
         pass
+
+
 
 
 class ContentNavigationDrawer(MDScrollView):

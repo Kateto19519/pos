@@ -3,15 +3,17 @@
 
 
 <DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
+    focus_behavior: False
+    focus_color: "#C0A776"
+    text_color: "#332f26"
+    icon_color: "#332f26"
+    selected_color: "#C0A776"
+    ripple_color: "#AF6D5C"
 
 
 <DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
+    text_color: "#332f26"
+    icon_color: "#332f26"
     focus_behavior: False
     selected_color: "#4a4939"
     _no_ripple_effect: True
@@ -21,44 +23,56 @@
 
     MDList:
 
-        OneLineAvatarListItem:
+        MDBoxLayout:
+            size_hint_y: None
+            height: "200dp"
+            orientation: 'vertical'
+            FitImage:
+                source: "assets/imgs/waiter_image.jpg"
+                size_hint_y: 0.1
+                pos_hint: {"top": 1}
+                radius: 150, 150, 150, 150
+
+        DrawerClickableItem:
             text: "Tables"
+            icon: 'table-chair'
             pos_hint:{"center_x": .1, "center_y": .76}
             on_press:
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "tables"
-            IconLeftWidget:
-                icon: 'table-chair'
 
 
-
-        OneLineAvatarListItem:
+        DrawerClickableItem:
             text: "Dashboard"
-            on_press:
-                root.nav_drawer.set_state("close")
-                root.screen_manager.current = "scr 2"
-            IconLeftWidget:
-                icon: 'monitor-dashboard'
+            icon: 'monitor-dashboard'
 
-        OneLineAvatarListItem:
-            text: "Staff"
             on_press:
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "scr 2"
-            IconLeftWidget:
-                icon: 'account'
+
+
+        DrawerClickableItem:
+            text: "Staff"
+            icon: 'account'
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "scr 2"
 
 
 <PosApp>:
 
     MDScreen:
-
+        md_bg_color: "#e0ebca"
         MDTopAppBar:
             pos_hint: {"top": 1}
             elevation: 4
             title: "Menu"
+            md_bg_color: "#2372d9"
+            specific_text_color: "#332f26"
+            radius: 0, 0, 50, 50
             left_action_items: [["menu", lambda x: nav_drawer.set_state("open")] ]
             right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
+
         MDNavigationLayout:
 
             MDScreenManager:
@@ -69,13 +83,13 @@
 
 
                     Tables:
+
                         rows: 8 if Window.width < 500 else 3
                         cols: 2 if Window.width <500 else 4
 #                        rows:4
 #                        cols:4
                         spacing:'70dp'
                         padding:'70dp'
-
 
 
                 MDScreen:
@@ -86,10 +100,10 @@
                         halign: "center"
 
             MDNavigationDrawer:
+                md_bg_color: "#2372d9"
                 id: nav_drawer
                 radius: (0, 16, 16, 0)
 
                 ContentNavigationDrawer:
                     screen_manager: screen_manager
                     nav_drawer: nav_drawer
-

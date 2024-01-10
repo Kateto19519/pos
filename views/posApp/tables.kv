@@ -1,3 +1,4 @@
+#: include views/menu/menu.kv
 
 <TableUILight@BoxLayout>
     padding:'30dp'
@@ -29,6 +30,7 @@
     theme_icon_color: "Custom"
     icon_color: "orange"
     pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    on_release: posApp.PosApp.menu_appear(self)
 
 <ButtonTableDark@MDRectangleFlatIconButton>
     icon: "table-chair"
@@ -37,10 +39,13 @@
     theme_icon_color: "Custom"
     icon_color: "orange"
     pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    on_release: posApp.PosApp.menu_appear(self)
+
+
+
 
 
 <Tables@GridLayout>:
-
     TableUIDark:
         ButtonTableDark:
             text:"TABLE1"
