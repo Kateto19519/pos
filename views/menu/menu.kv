@@ -9,18 +9,13 @@
 
 <MenuItemInfo@TwoLineListItem>
 
-<MenuTable@BoxLayout>:
+<MenuTable@GridLayout>:
     orientation:'vertical'
     rows: 8 if Window.width < 500 else 3
     cols: 2 if Window.width <500 else 2
 #    spacing:'10dp' #space between each element
 #    padding:'10dp'
-    canvas:
-        Color:
-            rgba:hex('#80edd2')
-        Rectangle:
-            size:self.size
-            pos:self.pos
+
 
 
 
@@ -37,20 +32,36 @@
     MDScreenManager:
         id: menu_screen
         MDScreen:
-            MenuTable: #just a grid layout for the table
-                MDBoxLayout:
-                    orientation:'vertical'
-                    size_hint_x:None
-                    width:root.width
-                    size_hint_y:None
-                    Label:
-                        text: "Menu Items"
-                        font_name: app.fonts.styled
-                        font_size: app.fonts.size.h1
-                        color:app.color_primary_text
+            MDBoxLayout:
+                orientation:'vertical'
+                size_hint_x:None
+                width:root.width
+                size_hint_y:None
+                pos_hint: {'top': 1}
+                canvas:
+                    Color:
+                        rgba:hex('#80edd2')
+                    Rectangle:
+                        size:self.size
+                        pos:self.pos
+                Label:
+                    text: "Menu Items"
+                    font_name: app.fonts.styled
+                    font_size: app.fonts.size.h1
+                    color:app.color_primary_text
 
-                        halign:'left'
-                        valign:'top'
+                    halign:'left'
+                    valign:'top'
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    MDRoundFlatButton:
+                        text: "MDRaisedButton"
+                        md_bg_color: "red"
+                    MDRoundFlatButton:
+                        text: "MDRaisedButton"
+                        md_bg_color: "red"
+                MenuTable: #just a grid layout for the table
+
 
 #                MDLabel:
 #                    orientation:"horizontal"
@@ -64,9 +75,3 @@
 #                    padding:'24dp'
 #                    md_bg_color:1,0,0
 
-                MDBoxLayout:
-                    orientation:'vertical'
-                    Button:
-                        text: "MDRaisedButton"
-                        md_bg_color: "red"
-                        halign:'left'
