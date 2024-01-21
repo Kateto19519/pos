@@ -24,8 +24,6 @@ class PosApp(MDScreen):
         pass
 
 
-
-
 class ContentNavigationDrawer(MDScrollView):
     screen_manager = ObjectProperty()
     nav_drawer = ObjectProperty()

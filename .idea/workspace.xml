@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c20bcaf-6729-42ad-840d-f523cda50087" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/imgs/pizza-img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/imgs/waiter_image.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/menu/menu.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/menu/menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/posApp/posApp.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/menu/menu.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/menu.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/posApp/posApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/posApp/tables.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/tables.kv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
