@@ -23,14 +23,12 @@
             size:self.size
 
 <ButtonTableLight@MDRectangleFlatIconButton>
-
     icon: "table-chair"
     text_color: "black"
     line_color:rgba(78, 47, 227, 0.2)
     theme_icon_color: "Custom"
     icon_color: "orange"
     pos_hint: {"center_x": 0.5, "center_y": 0.5}
-    on_release: posApp.PosApp.menu_appear(self)
 
 <ButtonTableDark@MDRectangleFlatIconButton>
     icon: "table-chair"
@@ -39,9 +37,6 @@
     theme_icon_color: "Custom"
     icon_color: "orange"
     pos_hint: {"center_x": 0.5, "center_y": 0.5}
-    on_release: posApp.PosApp.menu_appear(self)
-
-
 
 
 
@@ -49,48 +44,56 @@
     TableUIDark:
         ButtonTableDark:
             text:"TABLE1"
+            on_release: posApp.PosApp.menu_appear(self,1)
 
     TableUILight:
         ButtonTableLight:
             text:"TABLE2"
+            on_release: posApp.PosApp.menu_appear(self,2)
 
     TableUIDark:
         ButtonTableDark:
             text:"TABLE3"
+            on_release: posApp.PosApp.menu_appear(self,3)
 
     TableUILight:
         ButtonTableLight:
             text:"TABLE4"
+            on_release: posApp.PosApp.menu_appear(self,4)
 
     TableUIDark:
         ButtonTableDark:
             text:"TABLE5"
+            on_release: posApp.PosApp.menu_appear(self,5)
 
     TableUILight:
         ButtonTableLight:
             text:"TABLE6"
+            on_release: posApp.PosApp.menu_appear(self,6)
 
     TableUIDark:
         ButtonTableDark:
             text:"TABLE7"
+            on_release: posApp.PosApp.menu_appear(self,7)
 
     TableUILight:
         ButtonTableLight:
             text:"TABLE8"
-
-
+            on_release: posApp.PosApp.menu_appear(self,8)
     TableUIDark:
         ButtonTableDark:
             text:"TABLE9"
-
+            on_release: posApp.PosApp.menu_appear(self,9)
     TableUILight:
         ButtonTableLight:
             text:"TABLE10"
+            on_release: posApp.PosApp.menu_appear(self ,10)
 
     TableUIDark:
         ButtonTableDark:
             text:"TABLE11"
-
+            on_release: posApp.PosApp.menu_appear(self,11)
     TableUILight:
         ButtonTableLight:
             text:"TABLE12"
+            on_release: posApp.PosApp.menu_appear(self,12)

@@ -7,7 +7,7 @@
 #: import RoundedButton widgets.buttons.FlatButton
 #: import FadeTransition  kivy.uix.screenmanager.FadeTransition
 #: import menu views.menu.menu
-
+#: import homeadmin views.home_admin.home_admin
 <MainWindow>:
     orientation: 'vertical'
     canvas.before:
@@ -20,6 +20,10 @@
         id: scrn_mngr
         transition: FadeTransition()
         Screen:
+            name:'home_admin'
+            HomeAdmin:
+                id:home_admin
+        Screen:
             name: 'scrn_auth'
             Auth:
                 id: auth
@@ -31,3 +35,4 @@
             name:'scrn_menu'
             Menu:
                 id:menu
+

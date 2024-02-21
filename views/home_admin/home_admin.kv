@@ -1,0 +1,173 @@
+<HomeAdmin>:
+    spacing:dp(12)
+    padding:[dp(32), dp(16)]
+    BackBox:
+        radius:[self.width* .1]
+        orientation:'vertical'
+        spacing:dp(12)
+        size_hint_x: .1
+        bcolor:hex('#0c22c9')
+        BoxLayout:
+            size_hint_y:None
+            height:self.width
+            padding:dp(12)
+            Image:
+                source:'assets/imgs/logo-dark.png'
+        GridLayout:
+            cols:1
+            spacing:dp(12)
+            NavToggle:
+                text:"Point of sale"
+                icon: "home"
+            NavToggle:
+                text:"Point of sale"
+                icon: 'home'
+            NavToggle:
+                text:"Point of sale"
+                icon: 'home'
+            NavToggle:
+                text:"Point of sale"
+                icon: 'home'
+            NavToggle:
+                text:"Point of sale"
+                icon: 'home'
+
+    BoxLayout:
+        size_hint_x: .9
+        orientation:'vertical'
+        spacing:dp(12)
+
+<NavToggle@ToggleButtonBehavior+BoxLayout>:
+    size_hint_y:None
+    height:dp(48)
+    text:""
+    icon: ""
+    group:"nav-items" # cant select more than one item
+    spacing:dp(12)
+    AnchorLayout:
+        anchor_y:"center"
+        size_hint_x:None
+        width:dp(6)
+        Widget:
+            size_hint_y: .6
+            canvas.before:
+                Color:
+                    rgba:[1,1,1,1] if root.state == "down" else [0,0,0,0]
+                RoundedRectangle:
+                    pos:self.pos
+                    size:self.size
+                    radius:[0, dp(6), dp(6),0]
+
+    Text:
+        text:root.icon
+        color:[1,1,1,1]
+        halign:'center'
+        font_size:app.fonts.size.h2
+        size_hint_x:None
+        width:dp(26)
+
+    Text:
+        text:root.text
+        color:[1,1,1,1]
+        font_size:app.fonts.size.h3
+
+
+
+
+
+
+
+#❤
+
+#<NavigationDrawer>
+#
+#    MDList:
+#
+#        MDBoxLayout:
+#            size_hint_y: None
+#            height: "200dp"
+#            orientation: 'vertical'
+#            FitImage:
+#                source: "assets/imgs/waiter_image.jpg"
+#                size_hint_y: 0.1
+#                pos_hint: {"top": 1}
+#                radius: 150, 150, 150, 150
+#
+#        DrawerClickableItem:
+#            text: "Dashboard"
+#            icon: 'monitor-dashboard'
+#            pos_hint:{"center_x": .1, "center_y": .76}
+#            on_press:
+#                root.nav_drawer.set_state("close")
+#                root.screen_manager.current = "dashboard"
+#
+#
+#        DrawerClickableItem:
+#            text: "Add Menu Item"
+#            icon: 'food'
+#
+#            on_press:
+#                root.nav_drawer.set_state("close")
+#                root.screen_manager.current= "menu_add"
+#
+#        DrawerClickableItem:
+#            text: "Delete Menu Item"
+#            icon: 'food-off'
+#
+#            on_press:
+#                root.nav_drawer.set_state("close")
+#                root.screen_manager.current = "scr 2"
+#
+#        DrawerClickableItem:
+#            text: "Add member"
+#            icon: 'account'
+#
+#            on_press:
+#                root.nav_drawer.set_state("close")
+#                root.screen_manager.current = "scr 2"
+#
+#        DrawerClickableItem:
+#            text: "Delete member"
+#            icon: 'account-off'
+#
+#            on_press:
+#                root.nav_drawer.set_state("close")
+#                root.screen_manager.current = "scr 2"
+#
+#<HomeAdmin>:
+#    MDScreen:
+#        md_bg_color: "#e0ebca"
+#        MDTopAppBar:
+#            pos_hint: {"top": 1}
+#            elevation: 4
+#            title: "Menu"
+#            md_bg_color: "#2372d9"
+#            specific_text_color: "#332f26"
+#            radius: 0, 0, 50, 50
+#            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")] ]
+#            right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
+#        MDNavigationLayout:
+#
+#            MDScreenManager:
+#                id: screen_manager
+#
+#                MDScreen:
+#                    name: "dashboard"
+#
+#                    MDLabel:
+#                        text: "HELLO"
+#                        halign: "center"
+#                MDScreen:
+#                    name:"menu_add"
+#                    MenuAdd:
+#
+#
+#
+#            MDNavigationDrawer:
+#                md_bg_color: "#2372d9"
+#                id: nav_drawer
+#                radius: (0, 16, 16, 0)
+#
+#                NavigationDrawer:
+#                    screen_manager: screen_manager
+#                    nav_drawer: nav_drawer

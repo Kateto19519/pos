@@ -1,6 +1,4 @@
 <Auth>:
-
-
    BoxLayout:
       orientation:'vertical'
       spacing: dp(24)
@@ -74,26 +72,27 @@
             spacing: dp(24)
             padding: dp(24)
             size_hint_x: .7
+#            BackBox:
+#               size_hint_y: None
+#               height: dp(50)
+#               bcolor: app.color_secondary_bg
+#               radius: [self.height* 0.1]
+#               padding: [dp(12), dp(2)]
+#               FlatField:
+#                  id:username_field
+#                  left_icon: "account"
+#                  hint_text: "username"
+#                  hint_text_color: app.color_primary_text
+#                  font_size: app.fonts.size.h3
+#                  multiline:False
             BackBox:
-
                size_hint_y: None
                height: dp(50)
                bcolor: app.color_secondary_bg
                radius: [self.height* 0.1]
                padding: [dp(12), dp(2)]
                FlatField:
-                  left_icon: "account"
-                  hint_text: "username"
-                  hint_text_color: app.color_primary_text
-                  font_size: app.fonts.size.h3
-                  multiline:False
-            BackBox:
-               size_hint_y: None
-               height: dp(50)
-               bcolor: app.color_secondary_bg
-               radius: [self.height* 0.1]
-               padding: [dp(12), dp(2)]
-               FlatField:
+                  id:password_field
                   hint_text: "password"
                   hint_text_color: app.color_primary_text
                   font_size: app.fonts.size.h3
@@ -110,15 +109,6 @@
                   bcolor: app.color_primary
                   radius: [self.height*.1]
                   on_release: root.authenticate()
-            BackBox:
-               size_hint_y:None
-               height: dp(64)
-               FlatButton:
-                  text: "Don't have an account?"
-                  font_name: app.fonts.subheading
-                  font_size: app.fonts.size.h3
-                  color: app.color_primary_text
-                  radius: [self.height*.1]
             Widget:
 
       AnchorLayout:

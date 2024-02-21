@@ -1,36 +1,16 @@
 #:import hex kivy.utils.get_color_from_hex
-<MenuItem@MDSmartTile>:
-    radius: 24
-    box_radius: [0, 0, 24, 24]
-    box_color: 1, 1, 1, .7
-    size_hint: None, None
-    size: "150dp", "150dp"
-    lines:2 #this specifies how many lines of text the box will hold
 
-<MenuItemInfo@TwoLineListItem>
 <CategoryButton@MDRoundFlatButton>:
     text_color: "black"
     padding:'12dp'
 
-<MenuTable@MDGridLayout>:
-    rows: 12
-    cols: 2
-    md_bg_color:hex('#cbe6c1')
-
-
-
-
-
-
-
-
-<ReceiptPlaceholder@MDBoxLayout>:
-    pos_hint: {'right': 1, 'top': 1}
-    adaptive_width: True
-    adaptive_height: True
-    md_bg_color: app.theme_cls.primary_color
-    MDLabel:
-        text: "Table #"
+#<ReceiptPlaceholder@MDBoxLayout>:
+#    pos_hint: {'right': 1, 'top': 1}
+#    adaptive_width: True
+#    adaptive_height: True
+#    md_bg_color: app.theme_cls.primary_color
+#    MDLabel:
+#        text: "Table #"
 
 
 <Menu>:
@@ -65,18 +45,36 @@
                         spacing:'30dp'
                         padding:'12dp'
                         CategoryButton:
+                            text:"All"
+                            on_press:menu_table.load_menu_items()
+
+
+                        CategoryButton:
+                            id:1
                             text: "Soups"
+                            on_press: menu_table.load_type_of_meal(1)
                         CategoryButton:
+                            id:2
                             text: "Salads"
+                            on_press: menu_table.load_type_of_meal(2)
                         CategoryButton:
+                            id:3
                             text: "Appetizers"
+                            on_press: menu_table.load_type_of_meal(3)
                         CategoryButton:
+                            id:4
                             text: "Main Dishes"
+                            on_press: menu_table.load_type_of_meal(4)
                         CategoryButton:
+                            id:5
                             text: "Desserts"
+                            on_press: menu_table.load_type_of_meal(5)
                         CategoryButton:
+                            id:6
                             text: "Drinks"
+                            on_press: menu_table.load_type_of_meal(6)
                     MDBoxLayout:
+                        id:my_box
                         adaptive_width:True
                         adaptive_height:True
                         orientation:'horizontal'
@@ -85,10 +83,15 @@
                         height: root.height
 
                         MenuTable:
+                            id:menu_table
                             size_hint_x:0.65
-                        MDBoxLayout:
+
+                        BillHolder:
                             size_hint_x:0.35
-                            md_bg_color: hex('#52c229')
+#                            md_bg_color: hex('#ffffff')
+
+
+
 
 
 
