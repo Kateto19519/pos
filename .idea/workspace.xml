@@ -5,24 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c20bcaf-6729-42ad-840d-f523cda50087" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/views/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home_admin/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home_admin/home_admin.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home_admin/home_admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/mi_add/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/mi_add/menu_add.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/mi_add/menu_add.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/dashboard/dashboard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/stocks/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/stocks/stocks.kv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/stocks/stocks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/users/users.kv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/users/users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imgs/food_items/potatoes.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/food_items/potatoes.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/auth/auth.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/auth.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/auth/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/menu/menu.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/menu.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/menu/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/posApp/posApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/posApp/tables.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/tables.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home_admin/home_admin.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_admin/home_admin.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home_admin/home_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_admin/home_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/mi_add/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/mi_add/menu_add.kv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/mi_add/menu_add.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/kivyplt/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,15 +50,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/dc248/PycharmProjects/pos",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dc248/PycharmProjects/pos&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dc248\PycharmProjects\pos\assets\imgs" />
@@ -183,8 +180,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.dashboard" />
         <item itemvalue="Python.home_admin" />
+        <item itemvalue="Python.dashboard" />
         <item itemvalue="Python.menu" />
         <item itemvalue="Python.db_connector" />
       </list>
