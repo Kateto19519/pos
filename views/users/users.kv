@@ -1,159 +1,259 @@
 <Users>:
-    spacing: dp(12)
-    padding: [dp(32), dp(16)]
+    id: "scrn_users"
+    orientation: 'vertical'
+    padding: dp(12)
     MDBoxLayout:
+        size_hint_y: None
+        height: dp(54)
+        MDBoxLayout:
+        MDBoxLayout:
+            padding: [dp(12), 0]
+            size_hint_x: .1
+            bcolor: app.color_primary
+            RelativeLayout:
+                AnchorLayout:
+                    anchor_x: 'right'
+                    MDRoundFlatIconButton:
+                        text: "Add New"
+                        icon: 'plus'
+                        icon_color: "white"
+                        text_color: "white"
+                        width: self.height
+                        line_color: app.color_primary
+                        md_bg_color: app.color_primary
+                        on_release: root.add_new()
+    MDBoxLayout:
+        id: bx_table
         orientation: 'vertical'
-        spacing: dp(12)
-        size_hint_x: .20
-        md_bg_color: hex('#0c22c9')
+        padding: [0, dp(16), 0, 0]
         MDBoxLayout:
             size_hint_y: None
-            height: self.width
-            padding: dp(12)
-            Image:
-                source: 'assets/imgs/logo-dark.png'
-        GridLayout:
-            cols: 1
+            height: dp(42)
             spacing: dp(12)
-            padding: dp(12)
-            NavToggle:
-                text: "Dasboard"
-                icon: 'monitor-dashboard'
-            NavToggle:
-                text: "Manage food items"
-                icon: 'food-off'
-            NavToggle:
-                text: "Manage staff"
-                icon: 'account'
+            padding: [dp(12), 0]
+            md_bg_color: hex('#898f8b')
+            Text:
+                text: "Name"
+                color: app.color_primary_text
+                font_size: app.fonts.size.h3
+                size_hint_x: .15
 
+            Text:
+                text: "Password([size=14]encrypted[/size])"
+                color: app.color_primary_text
+                font_size: app.fonts.size.h3
+                size_hint_x: .15
 
-    BoxLayout:
-        size_hint_x: .9
-        orientation: 'vertical'
-        spacing: dp(12)
+            Text:
+                text: "Staff type"
+                color: app.color_primary_text
+                font_size: app.fonts.size.h3
+                size_hint_x: .15
 
-<NavToggle@ToggleButtonBehavior+BoxLayout>:
+            Text:
+                text: "Salary"
+                color: app.color_primary_text
+                font_size: app.fonts.size.h3
+                size_hint_x: .15
+
+            Text:
+                text: "Account created"
+                color: app.color_primary_text
+                font_size: app.fonts.size.h3
+                size_hint_x: .15
+        MDBoxLayout:
+            ScrollView:
+                do_scroll: [False, True]
+                size_hint_y: None
+                height: self.parent.height
+                GridLayout:
+                    id: gl_users
+                    cols: 1
+                    spacing: dp(8)
+                    size_hint_y: None
+                    height: self.minimum_height
+
+<UserTile>:
     size_hint_y: None
-    height: dp(48)
-    text: ''
-    icon: ''
-    group: 'nav-items'
+    height: dp(42)
     spacing: dp(12)
-    AnchorLayout:
-        anchor_y: "center"
-        size_hint_x: None
-        width: dp(6)
-        Widget:
-            size_hint_y: .6
-            canvas.before:
-                Color:
-                    rgba: [1, 1, 1, 1] if root.state == "down" else [0, 0, 0, 0]
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [0, dp(6), dp(6), 0]
-
-    MDIconButton:
-        icon: root.icon
+    padding: [dp(12), 0]
+    canvas.before:
+        Color:
+            rgb: app.color_secondary_bg
+        Rectangle:
+            pos: self.pos
+            size: [self.size[0], dp(2)]
 
     Text:
-        text: root.text
-        color: [1, 1, 1, 1]
+        text: root.username
+        color: app.color_primary_text
         font_size: app.fonts.size.h3
+        size_hint_x: .15
+        font_name: app.fonts.body
 
+    Text:
+        text: root.password
+        color: app.color_primary_text
+        font_size: app.fonts.size.h3
+        size_hint_x: .15
+        font_name: app.fonts.body
 
+    Text:
+        text: root.staff_type
+        color: app.color_primary_text
+        font_size: app.fonts.size.h3
+        size_hint_x: .15
+        font_name: app.fonts.body
 
+    Text:
+        text: root.salary
+        color: app.color_primary_text
+        font_size: app.fonts.size.h3
+        size_hint_x: .15
+        font_name: app.fonts.body
 
+    Text:
+        text: root.account_created
+        color: app.color_primary_text
+        font_size: app.fonts.size.h3
+        size_hint_x: .15
+        font_name: app.fonts.body
 
-#<NavigationDrawer>
-#
-#    MDList:
-#
-#        MDBoxLayout:
-#            size_hint_y: None
-#            height: "200dp"
-#            orientation: 'vertical'
-#            FitImage:
-#                source: "assets/imgs/waiter_image.jpg"
-#                size_hint_y: 0.1
-#                pos_hint: {"top": 1}
-#                radius: 150, 150, 150, 150
-#
-#        DrawerClickableItem:
-#            text: "Dashboard"
-#            icon: 'monitor-dashboard'
-#            pos_hint:{"center_x": .1, "center_y": .76}
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "dashboard"
-#
-#
-#        DrawerClickableItem:
-#            text: "Add Menu Item"
-#            icon: 'food'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current= "menu_add"
-#
-#        DrawerClickableItem:
-#            text: "Delete Menu Item"
-#            icon: 'food-off'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#        DrawerClickableItem:
-#            text: "Add member"
-#            icon: 'account'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#        DrawerClickableItem:
-#            text: "Delete member"
-#            icon: 'account-off'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#<HomeAdmin>:
-#    MDScreen:
-#        md_bg_color: "#e0ebca"
-#        MDTopAppBar:
-#            pos_hint: {"top": 1}
-#            elevation: 4
-#            title: "Menu"
-#            md_bg_color: "#2372d9"
-#            specific_text_color: "#332f26"
-#            radius: 0, 0, 50, 50
-#            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")] ]
-#            right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
-#        MDNavigationLayout:
-#
-#            MDScreenManager:
-#                id: screen_manager
-#
-#                MDScreen:
-#                    name: "dashboard"
-#
-#                    MDLabel:
-#                        text: "HELLO"
-#                        halign: "center"
-#                MDScreen:
-#                    name:"menu_add"
-#                    MenuAdd:
-#
-#
-#
-#            MDNavigationDrawer:
-#                md_bg_color: "#2372d9"
-#                id: nav_drawer
-#                radius: (0, 16, 16, 0)
-#
-#                NavigationDrawer:
-#                    screen_manager: screen_manager
-#                    nav_drawer: nav_drawer
+<ModifyUser>:
+    background: ""
+    background_color: [0, 0, 0, 0.1]
+    AnchorLayout:
+        anchor_x: "right"
+        BackBox:
+            orientation: 'vertical'
+            spacing: dp(12)
+            bcolor: app.color_primary_bg
+            size_hint_x: .3
+            AnchorLayout:
+                anchor_x: 'left'
+                size_hint_y: None
+                height: dp(42)
+                MDIconButton:
+                    icon: 'window-close'
+                    text_color: 0, 0, 0, 1
+                    on_release: root.dismiss()
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .2
+                Text:
+                    text: "Add staff member"
+                    font_name: app.fonts.styled
+                    font_size: app.fonts.size.extra
+                    color: app.color_primary_text
+                    halign: "center"
+                    valign: "bottom"
+
+                AnchorLayout:
+                    anchor_y: "top"
+                    Label:
+                        text: "Enter the details below to sign up a staff member."
+                        text_size: [self.parent.width, None]
+                        font_name: app.fonts.body
+                        font_size: app.fonts.size.h3
+                        size: self.texture_size
+                        color: app.color_secondary_text
+                        halign: "center"
+                        valign: "top"
+                        size_hint_y: None
+
+                Widget:
+
+            AnchorLayout:
+                size_hint_y: .8
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(24)
+                    padding: dp(12)
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: username_field
+                            hint_text: "username"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
+                            left_icon: 'lock'
+
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: passcode_field
+                            hint_text: "passcode"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
+                            left_icon: 'lock'
+
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: passcode_confirm_field
+                            hint_text: "confirm passcode"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
+                            left_icon: 'lock'
+
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        Spinner:
+                            id: staff_type
+                            background_normal: ''
+                            background_color: app.color_secondary_bg
+                            text: "Staff type"
+                            color: "black"
+                            font_size: app.fonts.size.h3
+                            values: ["Admin", "Waiter"]
+                            on_text: root.spinner_clicked(staff_type.text)
+
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: salary_field
+                            hint_text: "salary"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
+                            icon: 'lock'
+
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(64)
+                        RoundedButton:
+                            text: "Add"
+                            font_name: app.fonts.heading
+                            font_size: app.fonts.size.h1
+                            bcolor: app.color_primary
+                            radius: [self.height * .1]
+                            on_release:
+                                root.add_user()
+                                root.dismiss()
+
+                    Widget:

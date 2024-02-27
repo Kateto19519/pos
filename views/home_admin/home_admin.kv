@@ -1,3 +1,6 @@
+#: import Users views.users.Users
+#: import Dashboard views.dashboard.Dashboard
+#: import Stocks views.stocks.Stocks
 <HomeAdmin>:
     spacing:dp(12)
     padding:[dp(32), dp(16)]
@@ -18,18 +21,39 @@
             NavToggle:
                 text:"Dashboard"
                 icon: "monitor-dashboard"
+                on_release:scrn_mngr.current= "scrn_dashboard"
             NavToggle:
                 text:"Manage stock"
                 icon: 'food'
+                on_release:scrn_mngr.current= "scrn_stocks"
             NavToggle:
                 text:"Manage staff"
                 icon: 'account'
-
+                on_release:scrn_mngr.current= "scrn_users"
 
     BoxLayout:
         size_hint_x: .9
         orientation:'vertical'
         spacing:dp(12)
+        BoxLayout:
+            size_hint_y:None
+            height:dp(54)
+        ScreenManager:
+            id:scrn_mngr
+            Screen:
+                name:"scrn_dashboard"
+                Dashboard:
+                    id:dashboard
+
+            Screen:
+                name:"scrn_stocks"
+                Stocks:
+                    id:stocks
+
+            Screen:
+                name:"scrn_users"
+                Users:
+                    id:users
 
 <NavToggle@ToggleButtonBehavior+BoxLayout>:
     size_hint_y:None
@@ -65,98 +89,3 @@
 
 
 
-
-#❤
-
-#<NavigationDrawer>
-#
-#    MDList:
-#
-#        MDBoxLayout:
-#            size_hint_y: None
-#            height: "200dp"
-#            orientation: 'vertical'
-#            FitImage:
-#                source: "assets/imgs/waiter_image.jpg"
-#                size_hint_y: 0.1
-#                pos_hint: {"top": 1}
-#                radius: 150, 150, 150, 150
-#
-#        DrawerClickableItem:
-#            text: "Dashboard"
-#            icon: 'monitor-dashboard'
-#            pos_hint:{"center_x": .1, "center_y": .76}
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "dashboard"
-#
-#
-#        DrawerClickableItem:
-#            text: "Add Menu Item"
-#            icon: 'food'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current= "menu_add"
-#
-#        DrawerClickableItem:
-#            text: "Delete Menu Item"
-#            icon: 'food-off'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#        DrawerClickableItem:
-#            text: "Add member"
-#            icon: 'account'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#        DrawerClickableItem:
-#            text: "Delete member"
-#            icon: 'account-off'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#<HomeAdmin>:
-#    MDScreen:
-#        md_bg_color: "#e0ebca"
-#        MDTopAppBar:
-#            pos_hint: {"top": 1}
-#            elevation: 4
-#            title: "Menu"
-#            md_bg_color: "#2372d9"
-#            specific_text_color: "#332f26"
-#            radius: 0, 0, 50, 50
-#            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")] ]
-#            right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
-#        MDNavigationLayout:
-#
-#            MDScreenManager:
-#                id: screen_manager
-#
-#                MDScreen:
-#                    name: "dashboard"
-#
-#                    MDLabel:
-#                        text: "HELLO"
-#                        halign: "center"
-#                MDScreen:
-#                    name:"menu_add"
-#                    MenuAdd:
-#
-#
-#
-#            MDNavigationDrawer:
-#                md_bg_color: "#2372d9"
-#                id: nav_drawer
-#                radius: (0, 16, 16, 0)
-#
-#                NavigationDrawer:
-#                    screen_manager: screen_manager
-#                    nav_drawer: nav_drawer

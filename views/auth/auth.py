@@ -54,7 +54,7 @@ class Auth(BoxLayout):
 
         )
         self.dialog.open()
-        print("Authentication failed")
+
 
 
 

@@ -5,21 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c20bcaf-6729-42ad-840d-f523cda50087" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/views/dashboard/dashboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/stocks/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/stocks/stocks.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/stocks/stocks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/users/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/users/users.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/users/users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/auth/auth.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/auth.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/auth/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/dashboard.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home_admin/home_admin.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_admin/home_admin.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home_admin/home_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_admin/home_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mi_add/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mi_add/menu_add.kv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mi_add/menu_add.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/kivyplt/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/stocks/stocks.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/stocks/stocks.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/stocks/stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/stocks/stocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/users/users.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/users/users.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/users/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/users/users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

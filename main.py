@@ -1,14 +1,11 @@
 
 from os.path import dirname, join
 
-from kivy.garden.iconfonts import register
+from kivy.core.window import Window
 
 from app import MainApp
+from db_connector import mydb
 
-register(
-    "FeatherIcons",
-    join(dirname(__file__), "assets/fonts/feather/feather.ttf"),
-    join(dirname(__file__), "assets/fonts/feather/feather.fontd"),
-    )
 
 MainApp().run()
+mydb.close()
