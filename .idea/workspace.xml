@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/stocks/stocks.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/stocks/stocks.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/stocks/stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/stocks/stocks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/users/users.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/users/users.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/users/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/users/users.py" afterDir="false" />
     </list>

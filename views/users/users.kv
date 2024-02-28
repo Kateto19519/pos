@@ -132,7 +132,7 @@
         width:self.height
         on_release:root.delete_user()
 
-<ModifyUser>:
+<ModUser>:
     background: ""
     background_color: [0, 0, 0, 0.1]
     AnchorLayout:
@@ -240,7 +240,7 @@
                             text: "Staff type"
                             color: "black"
                             font_size: app.fonts.size.h3
-                            values: ["Admin", "Waiter"]
+                            values: ["admin", "waiter"]
                             on_text: root.spinner_clicked(staff_type.text)
 
                     BackBox:
@@ -314,6 +314,6 @@
                     bcolor:app.color_tertiary
                     color:rgba("#ffffff")
                     radius:[self.height * .1]
-                    on_release:
+                    on_release:root.delete_from_db()
 
 

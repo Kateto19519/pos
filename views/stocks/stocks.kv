@@ -248,7 +248,9 @@
                                 root.dismiss()
 
                     Widget:
-<DeleteConfirm>:
+
+
+<DeleteFoodItem>:
     background:""
     background_color:[0,0,0,.1]
     BackBox:
@@ -263,13 +265,15 @@
             size_hint_y:.6
             orientation:'vertical'
             Text:
+                id:del_title
                 text:'Delete food item'
                 font_name:app.fonts.styled
                 font_size:app.fonts.size.extra
                 color:app.color_primary_text
                 halign:'center'
             Text:
-                text:"Are you sure tou want to delete this food item"
+                id:delete_subtitle
+                text:"Are you sure you want to delete this food item"
                 halign:"center"
                 font_size:app.fonts.size.h2
                 color:app.color_primary_text

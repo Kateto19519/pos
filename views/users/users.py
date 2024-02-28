@@ -3,7 +3,7 @@ from threading import Thread
 import mysql.connector
 from kivy.clock import mainthread, Clock
 from kivy.lang import Builder
-from kivy.properties import StringProperty, ObjectProperty
+from kivy.properties import StringProperty, ObjectProperty, NumericProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.modalview import ModalView
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -15,6 +15,7 @@ from db_connector import mydb
 Builder.load_file('views/users/users.kv')
 
 class Users(MDBoxLayout):
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(self.render, .1)
@@ -32,6 +33,7 @@ class Users(MDBoxLayout):
         users = []
         for row in rows:
             user = {
+                'id_staff': row[0], # we get the id but vizualize show it(for delete and update)
                 'username': row[1],
                 'password': row[2],
                 'staff_type': row[3],
@@ -44,7 +46,7 @@ class Users(MDBoxLayout):
         return users
 
     def add_new(self):
-        md = ModifyUser(callback=self.add_user)
+        md = ModUser(callback=self.add_user)
         md.open()
 
     def add_user(self, user_data):
@@ -56,12 +58,15 @@ class Users(MDBoxLayout):
         ut.staff_type = user_data['staff_type']
         ut.salary = user_data['salary']
         ut.account_created = user_data['account_created']
+        ut.callback = self.delete_user
         grid.add_widget(ut)
+        self.get_users()
 
     def get_users(self):
         # Fetch users from the database
         users = self.get_users_from_db()
         self.set_users(users)
+
 
     @mainthread
     def set_users(self, users: list):
@@ -70,6 +75,7 @@ class Users(MDBoxLayout):
 
         for u in users:
             ut = UserTile()
+            ut.id_staff=u['id_staff']
             ut.username = u['username']
             ut.password = u['password']
             ut.staff_type = u['staff_type']
@@ -79,32 +85,46 @@ class Users(MDBoxLayout):
             ut.bind(on_release=self.update_user)
             grid.add_widget(ut)
 
+
+
     def update_user(self, user):
-        mv = ModifyUser()
+        mv = ModUser()
         mv.username= user.username
         mv.staff_type= user.staff_type
         mv.salary= user.salary
         mv.callback= self.set_update
-
         mv.open()
 
-    def set_update(self, mv):
+    def set_update(self):
         print("Updating....")
 
-    def delete_user(self, user):
-        dc = DeleteConfirm()
-        dc.open()
+    def delete_user(self, staff_id):
+        # Method to delete the staff member from the database
+        if staff_id:
+            dc = DeleteConfirm(callback=self.remove_user_from_ui, staff_id=staff_id)
+            dc.open()
+
+    def remove_user_from_ui(self, staff_id):
+        # Method to remove the user from UI based on staff_id
+        for widget in self.ids.gl_users.children:
+            if isinstance(widget, UserTile) and widget.id_staff == staff_id:
+                self.ids.gl_users.remove_widget(widget)
+                break
 
 
 
-class UserTile(ButtonBehavior,MDBoxLayout):
+
+
+class UserTile(ButtonBehavior, MDBoxLayout):
+    id_staff = NumericProperty()
     username = StringProperty("")
     password = StringProperty("")
     staff_type = StringProperty("")
     salary = StringProperty("")
     account_created = StringProperty("")
-    callback = ObjectProperty(allowone= True)
+    callback = ObjectProperty(allowone=True)
     user_data = ObjectProperty(None)
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(self.render, .1)
@@ -114,26 +134,45 @@ class UserTile(ButtonBehavior,MDBoxLayout):
 
     def delete_user(self):
         if self.callback:
-            self.callback(self)
+            self.callback(self.id_staff)
+
 
 class DeleteConfirm(ModalView):
-    callback= ObjectProperty(allowone= True)
-    user_data= ObjectProperty(None)
+    callback = ObjectProperty(allowone=True)
+    user_data = ObjectProperty(None)
+    id_staff = NumericProperty()
 
-    def __init__(self, user_data=None, **kw) -> None:
+    def __init__(self, callback=None, user_data=None, staff_id=None, **kw) -> None:
         super().__init__(**kw)
+        self.callback = callback
         self.user_data = user_data
+        self.id_staff = staff_id
         Clock.schedule_once(self.render, .1)
 
     def render(self, _):
         pass
-    def complete(self):
+
+    def delete_from_db(self):
+        if self.id_staff:
+            mycursor = mydb.cursor()
+            sql = "DELETE FROM staff WHERE id_staff = %s"
+            val = (self.id_staff,)
+
+            try:
+                mycursor.execute(sql, val)
+                mydb.commit()
+                print("User deleted successfully.")
+                if self.callback:
+                    self.callback(self.id_staff)
+            except mysql.connector.Error as e:
+                print("Error deleting user:", e)
+                mydb.rollback()
+            finally:
+                mycursor.close()
+
         self.dismiss()
 
-        if self.callback:
-            self.callback(self)
-
-class ModifyUser(ModalView):
+class ModUser(ModalView):
     username = StringProperty("")
     staff_type = StringProperty("")
     salary = StringProperty("")
@@ -148,7 +187,7 @@ class ModifyUser(ModalView):
 
     def spinner_clicked(self, value):
         print(value)
-        self.staff_type = value  # Set the staff_type property in ModifyUser
+        self.staff_type = value  # Set the staff_type property in ModUser
         self.selected_staff_type = value  # Store selected staff type
         return value
 
@@ -214,13 +253,11 @@ class ModifyUser(ModalView):
 
     def on_staff_type(self, inst, staff_type):
         self.ids.staff_type.text = staff_type
-        self.ids.title.text = "Update User"
-        self.ids.subtitle.text = "Enter the details below to update the staff member"
+
 
     def on_salary(self, inst, salary):
         self.ids.salary_field.text = salary
-        self.ids.title.text = "Update User"
-        self.ids.subtitle.text = "Enter the details below to update the staff member"
+
 
     @mainthread
     def show_dialog(self, title, text):
