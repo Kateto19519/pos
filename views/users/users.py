@@ -4,6 +4,7 @@ import mysql.connector
 from kivy.clock import mainthread, Clock
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ObjectProperty
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.modalview import ModalView
 from kivymd.uix.boxlayout import MDBoxLayout
 import datetime
@@ -74,21 +75,63 @@ class Users(MDBoxLayout):
             ut.staff_type = u['staff_type']
             ut.salary = u['salary']
             ut.account_created = u['account_created']
+            ut.callback= self.delete_user
+            ut.bind(on_release=self.update_user)
             grid.add_widget(ut)
 
-class UserTile(MDBoxLayout):
+    def update_user(self, user):
+        mv = ModifyUser()
+        mv.username= user.username
+        mv.staff_type= user.staff_type
+        mv.salary= user.salary
+        mv.callback= self.set_update
+
+        mv.open()
+
+    def set_update(self, mv):
+        print("Updating....")
+
+    def delete_user(self, user):
+        dc = DeleteConfirm()
+        dc.open()
+
+
+
+class UserTile(ButtonBehavior,MDBoxLayout):
     username = StringProperty("")
     password = StringProperty("")
     staff_type = StringProperty("")
     salary = StringProperty("")
     account_created = StringProperty("")
-
+    callback = ObjectProperty(allowone= True)
+    user_data = ObjectProperty(None)
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(self.render, .1)
 
     def render(self, _):
         pass
+
+    def delete_user(self):
+        if self.callback:
+            self.callback(self)
+
+class DeleteConfirm(ModalView):
+    callback= ObjectProperty(allowone= True)
+    user_data= ObjectProperty(None)
+
+    def __init__(self, user_data=None, **kw) -> None:
+        super().__init__(**kw)
+        self.user_data = user_data
+        Clock.schedule_once(self.render, .1)
+
+    def render(self, _):
+        pass
+    def complete(self):
+        self.dismiss()
+
+        if self.callback:
+            self.callback(self)
 
 class ModifyUser(ModalView):
     username = StringProperty("")
@@ -161,6 +204,23 @@ class ModifyUser(ModalView):
             mydb.rollback()
         finally:
             mycursor.close()
+    def update_user(self):
+        pass
+    def on_username(self, inst, username):
+        self.ids.username_field.text= username
+        self.ids.btn_confirm.text= "Update"
+        self.ids.title.text="Update User"
+        self.ids.subtitle.text= "Enter the details below to update the staff member"
+
+    def on_staff_type(self, inst, staff_type):
+        self.ids.staff_type.text = staff_type
+        self.ids.title.text = "Update User"
+        self.ids.subtitle.text = "Enter the details below to update the staff member"
+
+    def on_salary(self, inst, salary):
+        self.ids.salary_field.text = salary
+        self.ids.title.text = "Update User"
+        self.ids.subtitle.text = "Enter the details below to update the staff member"
 
     @mainthread
     def show_dialog(self, title, text):

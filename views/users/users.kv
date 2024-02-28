@@ -44,6 +44,7 @@
                 font_size: app.fonts.size.h3
                 size_hint_x: .15
 
+
             Text:
                 text: "Staff type"
                 color: app.color_primary_text
@@ -61,6 +62,10 @@
                 color: app.color_primary_text
                 font_size: app.fonts.size.h3
                 size_hint_x: .15
+            MDBoxLayout:
+                size_hint_x:None
+                width:self.height
+
         MDBoxLayout:
             ScrollView:
                 do_scroll: [False, True]
@@ -99,6 +104,7 @@
         size_hint_x: .15
         font_name: app.fonts.body
 
+
     Text:
         text: root.staff_type
         color: app.color_primary_text
@@ -119,6 +125,12 @@
         font_size: app.fonts.size.h3
         size_hint_x: .15
         font_name: app.fonts.body
+
+    MDIconButton:
+        icon:'delete'
+        size_hint_x:None
+        width:self.height
+        on_release:root.delete_user()
 
 <ModifyUser>:
     background: ""
@@ -143,6 +155,7 @@
                 orientation: 'vertical'
                 size_hint_y: .2
                 Text:
+                    id:title
                     text: "Add staff member"
                     font_name: app.fonts.styled
                     font_size: app.fonts.size.extra
@@ -153,6 +166,7 @@
                 AnchorLayout:
                     anchor_y: "top"
                     Label:
+                        id: subtitle
                         text: "Enter the details below to sign up a staff member."
                         text_size: [self.parent.width, None]
                         font_name: app.fonts.body
@@ -183,7 +197,6 @@
                             hint_text_color: app.color_primary_text
                             font_size: app.fonts.size.h3
                             multiline: False
-                            left_icon: 'lock'
 
                     BackBox:
                         size_hint_y: None
@@ -198,6 +211,7 @@
                             font_size: app.fonts.size.h3
                             multiline: False
                             left_icon: 'lock'
+                            password:True
 
                     BackBox:
                         size_hint_y: None
@@ -211,7 +225,7 @@
                             hint_text_color: app.color_primary_text
                             font_size: app.fonts.size.h3
                             multiline: False
-                            left_icon: 'lock'
+                            password:True
 
                     BackBox:
                         size_hint_y: None
@@ -241,12 +255,13 @@
                             hint_text_color: app.color_primary_text
                             font_size: app.fonts.size.h3
                             multiline: False
-                            icon: 'lock'
 
                     BackBox:
+                        id:btn_confirm
                         size_hint_y: None
                         height: dp(64)
                         RoundedButton:
+                            id:btn_confirm
                             text: "Add"
                             font_name: app.fonts.heading
                             font_size: app.fonts.size.h1
@@ -257,3 +272,48 @@
                                 root.dismiss()
 
                     Widget:
+<DeleteConfirm>:
+    background:""
+    background_color:[0,0,0,.1]
+    BackBox:
+        orientation:'vertical'
+        spacing:dp(12)
+        padding:dp(14)
+        bcolor:app.color_primary_bg
+        radius:[self.height *.08]
+        size_hint:[None, 0.7]
+        width:self.height
+        BoxLayout:
+            size_hint_y:.6
+            orientation:'vertical'
+            Text:
+                text:'Delete user'
+                font_name:app.fonts.styled
+                font_size:app.fonts.size.extra
+                color:app.color_primary_text
+                halign:'center'
+            Text:
+                text:"Are you sure tou want to delete this user"
+                halign:"center"
+                font_size:app.fonts.size.h2
+                color:app.color_primary_text
+        AnchorLayout:
+            BoxLayout:
+                size_hint_y:.4
+                spacing:dp(12)
+                size_hint_y:None
+                height:dp(64)
+                FlatButton:
+                    text:"Cancel"
+                    font_size:app.fonts.size.h2
+                    color:app.color_primary
+                    on_release:root.dismiss()
+                RoundedButton:
+                    text: "Yes, Delete"
+                    font_size:app.fonts.size.h2
+                    bcolor:app.color_tertiary
+                    color:rgba("#ffffff")
+                    radius:[self.height * .1]
+                    on_release:
+
+
