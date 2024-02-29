@@ -85,8 +85,6 @@ class Users(MDBoxLayout):
             ut.bind(on_release=self.update_user)
             grid.add_widget(ut)
 
-
-
     def update_user(self, user):
         mv = ModUser()
         mv.username= user.username
@@ -110,8 +108,6 @@ class Users(MDBoxLayout):
             if isinstance(widget, UserTile) and widget.id_staff == staff_id:
                 self.ids.gl_users.remove_widget(widget)
                 break
-
-
 
 
 
@@ -149,6 +145,7 @@ class DeleteConfirm(ModalView):
         self.id_staff = staff_id
         Clock.schedule_once(self.render, .1)
 
+
     def render(self, _):
         pass
 
@@ -162,15 +159,31 @@ class DeleteConfirm(ModalView):
                 mycursor.execute(sql, val)
                 mydb.commit()
                 print("User deleted successfully.")
+                self.show_dialog("Success", "User deleted successfully.")
                 if self.callback:
                     self.callback(self.id_staff)
             except mysql.connector.Error as e:
+                self.show_dialog("Error!", "An error occured while trying to delete a user. Please try again or contact the developer.")
                 print("Error deleting user:", e)
                 mydb.rollback()
             finally:
                 mycursor.close()
 
         self.dismiss()
+    @classmethod
+    @mainthread
+    def show_dialog(cls, title, text):
+        dialog = MDDialog(
+            title=title,
+            text=text,
+            buttons=[
+                MDFlatButton(
+                    text="CLOSE",
+                    on_release=lambda *args: dialog.dismiss()
+                )
+            ]
+        )
+        dialog.open()
 
 class ModUser(ModalView):
     username = StringProperty("")
@@ -179,8 +192,10 @@ class ModUser(ModalView):
     account_created = StringProperty("")
     callback = ObjectProperty(allownone=True)
 
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        Clock.schedule_once(self.render, .1)
 
     def render(self, _):
         pass
@@ -199,14 +214,21 @@ class ModUser(ModalView):
         salary = self.ids.salary_field.text
         account_created = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if not (username and password and confirmed_passcode and staff_type and salary):
-            self.show_dialog("Couldn't add a new staff member.", "Please fill in all the fields.")
+            DeleteConfirm.show_dialog("Couldn't add a new staff member.", "Please fill in all the fields.")
             return
 
         if len(username) < 2:
-            self.show_dialog("Couldn't add a new staff member.", "Username should be more than two letters.")
+            DeleteConfirm.show_dialog("Couldn't add a new staff member.", "Username should be more than two letters.")
             return
         elif password != confirmed_passcode:
-            self.show_dialog("Couldn't add a new staff member.", "Passwords do not match.")
+            DeleteConfirm.show_dialog("Couldn't add a new staff member.", "Passwords do not match.")
+            return
+        elif  staff_type == "Staff type":  # Check if staff_type is empty
+            DeleteConfirm.show_dialog("Couldn't add a new staff member.", "Please select a staff type.")
+            return
+
+        if not salary.isdigit():
+            DeleteConfirm.show_dialog("Couldn't add a new staff member.", "Salary should be a valid number.")
             return
 
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
@@ -234,41 +256,29 @@ class ModUser(ModalView):
             if self.callback:
                 self.callback(user)
 
-            self.show_dialog("Staff member added successfully.", f"{username} was added successfully to the database.")
+            DeleteConfirm.show_dialog("Staff member added successfully.", f"{username} was added successfully to the database.")
 
         except mysql.connector.Error:
-            self.show_dialog("Couldn't add a new staff member.",
+            DeleteConfirm.show_dialog("Couldn't add a new staff member.",
                              "An error occurred while adding the user. "
                              "Try entering the details again or contact the developer for more information.")
             mydb.rollback()
         finally:
             mycursor.close()
     def update_user(self):
-        pass
+        print("Updating..")
     def on_username(self, inst, username):
         self.ids.username_field.text= username
         self.ids.btn_confirm.text= "Update"
-        self.ids.title.text="Update User"
+        self.ids.title.text= "Update User"
+        self.ids.btn_confirm.on_release= self.update_user()
         self.ids.subtitle.text= "Enter the details below to update the staff member"
+
 
     def on_staff_type(self, inst, staff_type):
         self.ids.staff_type.text = staff_type
-
 
     def on_salary(self, inst, salary):
         self.ids.salary_field.text = salary
 
 
-    @mainthread
-    def show_dialog(self, title, text):
-        dialog = MDDialog(
-            title=title,
-            text=text,
-            buttons=[
-                MDFlatButton(
-                    text="CLOSE",
-                    on_release=lambda *args: dialog.dismiss()
-                )
-            ]
-        )
-        dialog.open()

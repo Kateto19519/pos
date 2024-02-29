@@ -240,7 +240,7 @@
                             text: "Staff type"
                             color: "black"
                             font_size: app.fonts.size.h3
-                            values: ["admin", "waiter"]
+                            values: ["Admin", "Waiter"]
                             on_text: root.spinner_clicked(staff_type.text)
 
                     BackBox:
@@ -314,6 +314,6 @@
                     bcolor:app.color_tertiary
                     color:rgba("#ffffff")
                     radius:[self.height * .1]
-                    on_release:root.delete_from_db()
+                    on_release:root.delete_user()
 
 
