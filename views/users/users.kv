@@ -261,17 +261,18 @@
                         size_hint_y: None
                         height: dp(64)
                         RoundedButton:
-                            id:btn_confirm
-                            text: "Add"
+                            id: btn_action
+                            text: "Add" if not root.id_staff else "Update"
                             font_name: app.fonts.heading
                             font_size: app.fonts.size.h1
                             bcolor: app.color_primary
                             radius: [self.height * .1]
                             on_release:
-                                root.add_user()
+                                root.add_user() if not root.id_staff else root.update_user()
                                 root.dismiss()
 
                     Widget:
+
 <DeleteConfirm>:
     background:""
     background_color:[0,0,0,.1]
@@ -314,6 +315,6 @@
                     bcolor:app.color_tertiary
                     color:rgba("#ffffff")
                     radius:[self.height * .1]
-                    on_release:root.delete_user()
+                    on_release:root.delete_from_db()
 
 
