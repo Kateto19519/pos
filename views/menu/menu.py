@@ -13,7 +13,10 @@ from db_connector import mydb
 
 Builder.load_file('views/menu/menu.kv')
 
+# menuitem class is a box where i put the information for a single item(name, price, img_name)
 class MenuItem(MDBoxLayout):
+    # array used in one of the methods, it stores the selected items when a button of an item is pressed
+    selected_items= []
     def __init__(self, id_food_item, name, price, category, img_name):
         super().__init__(orientation='vertical', adaptive_height=True, adaptive_width=True, padding=25, spacing=5,size_hint_y=None)
         self.id_food_item= id_food_item
@@ -23,12 +26,13 @@ class MenuItem(MDBoxLayout):
         self.img_name = img_name
         img_path = f'assets/imgs/food_items/{img_name}'
         image = Image(source=img_path, height=100, width=100, size_hint=(None, None))
-        # !!!!!! id= img_name which is in the database
-        button_name = MDFlatButton(text=name, halign='center', id= img_name)
+        button_name = MDFlatButton(text=name, halign='center', id= img_name, on_press= self.on_menu_item_selected)
         label_price = MDLabel(text=f'Price: ${price}', halign='center')
+        # adding the kivy widgets to the ui after we have the information
         self.add_widget(image)
         self.add_widget(button_name)
         self.add_widget(label_price)
+
 
     @classmethod
     def from_db_record(cls, db_record):
@@ -39,10 +43,26 @@ class MenuItem(MDBoxLayout):
         img_name = db_record['img_name']
         return cls(id_food_item,name, price, category, img_name)
 
-class Menu(MDScreen):
+    #!!!!!thats the method i want to wrewrite so when i press a button the name
+    # and the price of the pressed menu item should be added in the bill_layout(its a grid widget in the billholder scrollview
+    # problem is i cant call bill_layout and i cant add the information to the scrollview.)!!!!!!
+    def on_menu_item_selected(self, button_instance):
+        # Append selected item to the class attribute selected_items
+        MenuItem.selected_items.append({'name': self.name, 'price': self.price})
+        # Calculate total price and add the selected item to the bill
+        total = 0
+        for item in MenuItem.selected_items:
+            if 'name' in item and 'price' in item:
+                total += item['price']
+        print("Item name :"+ item['name']+" Item price: "+ str(item['price']) )
+        # self.bill_holder.add_menu_item_to_bill(self.name, self.price)
+        print(f"Total: ${total}")
 
+
+class Menu(MDScreen):
     pass
 
+# the scrollview where i vizualize all the menu items from the db
 class MenuTable(MDScrollView):
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -61,7 +81,7 @@ class MenuTable(MDScrollView):
     def clear_widgets_in_scrollview(self):
         self.menu_layout.clear_widgets()
 
-    # with type of meal
+    # method which i use when i want to select a specific type of meal(i have buttons for souprs, salads etc.)
     def load_type_of_meal(self, category):
         self.clear_widgets_in_scrollview()
         mycursor = mydb.cursor()
@@ -79,7 +99,7 @@ class MenuTable(MDScrollView):
             })
             self.menu_layout.add_widget(menu_item)
 
-    # every meal
+    # method which i use when i want to select all type of meals(i have button for all)
     def load_menu_items(self):
         self.clear_widgets_in_scrollview()
         mycursor = mydb.cursor()
@@ -96,7 +116,9 @@ class MenuTable(MDScrollView):
             self.menu_layout.add_widget(menu_item)
 
 
-
+# thats the class in which i want to put the information of the menu item
+# (i should put it in the bill_layout like i put the labels as an example below(self.bill_layout.add_widget(label))).
+# Its work is like a receipt
 class BillHolder(MDScrollView):
 
     def __init__(self, **kw):
@@ -105,15 +127,14 @@ class BillHolder(MDScrollView):
         self.bar_width = '12dp'  # Adjust the scrollbar width if needed
         # self.size_hint_y = None  # Set size_hint_y to None
         # self.height = Window.height  # Set the height to match parent height
-        # # Create a grid layout to hold the content
+
+        #  Create a grid layout to hold the content because in kivy we cant have only a scrollview in which we put the items
         self.bill_layout = MDGridLayout(cols=1, size_hint_y=None, spacing='10dp', padding='10dp')
         self.bill_layout.bind(minimum_height=self.bill_layout.setter('height'))
+        #we add the grid widget to the scrollview
         self.add_widget(self.bill_layout)
 
-        # Add some labels as example content (replace with your own content)
+        # Add some labels as example content so i cna see if the scrollview works properly (replace with the menu items content )
         for i in range(20):
             label = MDLabel(text=f"Item {i}", size_hint=(None, None), size=(dp(200), dp(40)))
             self.bill_layout.add_widget(label)
-
-
-

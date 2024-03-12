@@ -5,11 +5,14 @@
     padding:'12dp'
     spacing:'12dp'
     line_color: "black"
+
 <Menu>:
     MDScreenManager:
         id: menu_screen
         MDScreen:
+            id: md_screen
             MDBoxLayout: #the main one
+                id:main_box
                 orientation:'vertical'
                 md_bg_color: hex('#58edc8')
                 MDBoxLayout: # for the buttons and label, it doesnt appear
@@ -74,21 +77,8 @@
                         size_hint_x: 0.65
                         height: my_box.height
                     BillHolder:
+                        id: bill_holder
                         size_hint_x:0.35
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

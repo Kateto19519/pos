@@ -34,16 +34,16 @@ class Auth(BoxLayout):
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         # the type and the password from the database
         mycursor = mydb.cursor()
-        mycursor.execute('SELECT password,id_staff, staff_type FROM staff WHERE password=%s ', (hashed_password,))# tuple so i can avoid sql injection
+        mycursor.execute('SELECT password,id_staff,username, staff_type FROM staff WHERE password=%s ', (hashed_password,))# tuple so i can avoid sql injection
         user_data = mycursor.fetchone() # returns None or True
 
         if user_data:
-            stored_password, id_staff, staff_type = user_data  # Adjust the order of columns
+            stored_password, id_staff, username, staff_type = user_data  # Adjust the order of columns
             print("Authentication successful")
             self.id_staff = str(id_staff)
 
             # Write user information to the CSV file
-            user_info = [staff_type, id_staff]
+            user_info = [staff_type, username, id_staff]
             write_user_info_to_csv(user_info)
 
             if staff_type == 'waiter':
@@ -54,7 +54,6 @@ class Auth(BoxLayout):
                 self.show_authentication_failed_dialog()
         else:
             self.show_authentication_failed_dialog()
-            print("No user data")
 
     def show_authentication_failed_dialog(self):
         self.dialog = MDDialog(
