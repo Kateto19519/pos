@@ -1,5 +1,6 @@
 #:import Window kivy.core.window.Window
 #:include views/posApp/tables.kv
+#:import App kivy.app.App
 
 
 <DrawerClickableItem@MDNavigationDrawerItem>
@@ -58,6 +59,12 @@
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "scr 2"
 
+        DrawerClickableItem:# here i want to implement the same logic
+            text: "Log out"
+            icon: 'logout'
+            on_press: app.root.logout(self, self.text)
+
+
 
 <PosApp>:
 
@@ -83,11 +90,8 @@
 
 
                     Tables:
-
                         rows: 8 if Window.width < 500 else 3
                         cols: 2 if Window.width <500 else 4
-#                        rows:4
-#                        cols:4
                         spacing:'70dp'
                         padding:'70dp'
 

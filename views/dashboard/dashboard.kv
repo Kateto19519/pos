@@ -1,104 +1,152 @@
 <Dashboard>:
-    orientation:'vertical'
-    Text:
-        text:"Dashboard"
-        color:app.color_primary
-        font_size:dp(48)
-        halign:'center'
+    orientation: 'vertical'
+    spacing: dp(22)
+    BoxLayout:
+        spacing: dp(12)
+        size_hint_y: None
+        height: dp(48)
+        Widget:
+            size_hint_x: .7
+        BoxLayout:
+            spacing: dp(12)
+            size_hint_x: .3
+            MDIcon:
+                icon: 'bell-outline'
+                color: app.color_primary_text
+                font_size: app.fonts.size.h1
+                size_hint_x: None
+                width: self.height
+            Widget:
+            BoxLayout:
+                RelativeLayout:
+                    Spinner:
+                        text: 'Admin'
+                        font_name: app.fonts.styled
+                        color: app.color_primary_text
+                        font_size: app.fonts.size.h3
+                        text_size: self.size
+                        halign: 'right'
+                        valign: 'middle'
+                        values: ['Log out']
+                        background_color: [0, 0, 0, 0]
+                        background_down: ''
+                        background_normal: ''
+                        on_text:root.logout(self, self.text)
+                    MDIcon:
+                        icon: 'chevron-down'
+                        color: app.color_primary_text
+                        size_hint_x: None
+                        width: self.height
+                        halign: 'right'
+                        valign: 'middle'
 
+    BoxLayout:
+        spacing: dp(12)
+        size_hint_y: .3
+        StatsBox:
+            title: "Revenue this month"
+            subtitle: "+$20, 345"
+            bcolor: app.color_tertiary
+            font_size: app.fonts.size.extra
+            size_hint_x:.25
+        Widget:
+            size_hint_x:.125
+        StatsBox:
+            title: "Total products sold this year"
+            subtitle: "258"
+            bcolor: app.color_secondary
+            font_size: app.fonts.size.extra
+            size_hint_x:.25
+        Widget:
+            size_hint_x:.125
+        StatsBox:
+            title: "Reservations, made this month"
+            subtitle: "126"
+            bcolor: app.color_primary
+            font_size: app.fonts.size.extra
+            size_hint_x:.25
 
+    BoxLayout:
+        spacing: dp(12)
+        size_hint_y: .7
+        BackBox:
+            bcolor:app.color_secondary_bg
+            size_hint_x:.7
+        BackBox:
+            bcolor:app.color_primary_bg
+            size_hint_x:.3
+            orientation:'vertical'
+            BackBox:
+                bcolor:app.color_primary
+                radius:[self.height*.2, self.height*.2,0,0]
+                size_hint_y:None
+                height:dp(64)
+                spacing:dp(12)
+                padding:[dp(12), 2]
+                Text:
+                    text:"Top 10 Best Sellers"
+                    color:app.color_primary_bg
+                    font_size:app.fonts.size.h2
+                    size_hint_x: .7
+            ScrollView:
+                GridLayout:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(12)
+                    spacing: dp(5)
+                    cols:1
+                    Text:
+                        text: "Kebap"
+                        size_hint_y: None
+                        height: dp(30)
+                        canvas.before:
+                            Color:
+                                rgb: app.color_secondary_bg
+                            Rectangle:
+                                pos: self.pos
+                                size: [self.size[0], dp(2)]
+                    Text:
+                        text: "Chicken soup"
+                        size_hint_y: None
+                        height: dp(30)
+                        canvas.before:
+                            Color:
+                                rgb: app.color_secondary_bg
+                            Rectangle:
+                                pos: self.pos
+                                size: [self.size[0], dp(2)]
+                    Text:
+                        text: "Coca Cola"
+                        size_hint_y: None
+                        height: dp(30)
+                        canvas.before:
+                            Color:
+                                rgb: app.color_secondary_bg
+                            Rectangle:
+                                pos: self.pos
+                                size: [self.size[0], dp(2)]
 
-
-
-#<NavigationDrawer>
-#
-#    MDList:
-#
-#        MDBoxLayout:
-#            size_hint_y: None
-#            height: "200dp"
-#            orientation: 'vertical'
-#            FitImage:
-#                source: "assets/imgs/waiter_image.jpg"
-#                size_hint_y: 0.1
-#                pos_hint: {"top": 1}
-#                radius: 150, 150, 150, 150
-#
-#        DrawerClickableItem:
-#            text: "Dashboard"
-#            icon: 'monitor-dashboard'
-#            pos_hint:{"center_x": .1, "center_y": .76}
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "dashboard"
-#
-#
-#        DrawerClickableItem:
-#            text: "Add Menu Item"
-#            icon: 'food'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current= "menu_add"
-#
-#        DrawerClickableItem:
-#            text: "Delete Menu Item"
-#            icon: 'food-off'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#        DrawerClickableItem:
-#            text: "Add member"
-#            icon: 'account'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#        DrawerClickableItem:
-#            text: "Delete member"
-#            icon: 'account-off'
-#
-#            on_press:
-#                root.nav_drawer.set_state("close")
-#                root.screen_manager.current = "scr 2"
-#
-#<HomeAdmin>:
-#    MDScreen:
-#        md_bg_color: "#e0ebca"
-#        MDTopAppBar:
-#            pos_hint: {"top": 1}
-#            elevation: 4
-#            title: "Menu"
-#            md_bg_color: "#2372d9"
-#            specific_text_color: "#332f26"
-#            radius: 0, 0, 50, 50
-#            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")] ]
-#            right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
-#        MDNavigationLayout:
-#
-#            MDScreenManager:
-#                id: screen_manager
-#
-#                MDScreen:
-#                    name: "dashboard"
-#
-#                    MDLabel:
-#                        text: "HELLO"
-#                        halign: "center"
-#                MDScreen:
-#                    name:"menu_add"
-#                    MenuAdd:
-#
-#
-#
-#            MDNavigationDrawer:
-#                md_bg_color: "#2372d9"
-#                id: nav_drawer
-#                radius: (0, 16, 16, 0)
-#
-#                NavigationDrawer:
-#                    screen_manager: screen_manager
-#                    nav_drawer: nav_drawer
+<StatsBox@BoxLayout>:
+    bcolor: rgba("#ffffff")
+    title: ""
+    subtitle: ""
+    font_size: dp(16)
+    BackBox:
+        orientation: 'vertical'
+        spacing: dp(8)
+        radius: [self.height * .1]
+        bcolor: root.bcolor
+        Text:
+            text: root.subtitle
+            font_size: root.font_size
+            color: rgba("#ffffff")
+            halign: "center"
+            valign: "middle"
+            size_hint_y: .6
+        Text:
+            text: root.title
+            font_size: app.fonts.size.h5
+            color: rgba("#ffffff")
+            halign: "center"
+            valign: "middle"
+            size_hint_y: .4

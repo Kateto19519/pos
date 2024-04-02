@@ -20,10 +20,7 @@
     ScreenManager:
         id: scrn_mngr
         transition: FadeTransition()
-        Screen:
-            name:'scrn_menu'
-            Menu:
-                id:menu
+
         Screen:
             name: 'scrn_home'
             Home:
@@ -33,9 +30,14 @@
             Auth:
                 id: auth
         Screen:
+            name:'scrn_menu'
+            Menu:
+                id:menu
+        Screen:
             name:'home_admin'
             HomeAdmin:
                 id:home_admin
+
 
 
 

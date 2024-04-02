@@ -21,7 +21,8 @@
                         width: self.height
                         line_color: app.color_primary
                         md_bg_color: app.color_primary
-                        on_release: root.add_new()
+                        on_release: root.add_new_food_item()
+
     MDBoxLayout:
         id: bx_table
         orientation: 'vertical'
@@ -37,26 +38,21 @@
                 color: app.color_primary_text
                 font_size: app.fonts.size.h3
                 size_hint_x: .15
-
             Text:
                 text: "Price"
                 color: app.color_primary_text
                 font_size: app.fonts.size.h3
                 size_hint_x: .15
-
-
             Text:
                 text: "Category"
                 color: app.color_primary_text
                 font_size: app.fonts.size.h3
                 size_hint_x: .15
-
             Text:
                 text: "Image Name"
                 color: app.color_primary_text
                 font_size: app.fonts.size.h3
                 size_hint_x: .15
-
             MDBoxLayout:
                 size_hint_x:None
                 width:self.height
@@ -72,7 +68,6 @@
                     spacing: dp(8)
                     size_hint_y: None
                     height: self.minimum_height
-
 
 <FoodItemTile>:
     size_hint_y: None
@@ -114,16 +109,182 @@
         size_hint_x: .15
         font_name: app.fonts.body
 
-
     MDIconButton:
         icon:'delete'
         size_hint_x:None
         width:self.height
-        on_release:
+        on_release:root.delete_food_item()
 
+<ModFoodItem>:
+    background: ""
+    background_color: [0, 0, 0, 0.1]
+    AnchorLayout:
+        anchor_x: "right"
+        BackBox:
+            orientation: 'vertical'
+            spacing: dp(12)
+            bcolor: app.color_primary_bg
+            size_hint_x: .3
+            AnchorLayout:
+                anchor_x: 'left'
+                size_hint_y: None
+                height: dp(42)
+                MDIconButton:
+                    icon: 'window-close'
+                    text_color: 0, 0, 0, 1
+                    on_release: root.dismiss()
 
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .2
+                Text:
+                    id:title
+                    text: "Add Food Item"
+                    font_name: app.fonts.styled
+                    font_size: app.fonts.size.extra
+                    color: app.color_primary_text
+                    halign: "center"
+                    valign: "bottom"
 
+                AnchorLayout:
+                    anchor_y: "top"
+                    Label:
+                        id: subtitle
+                        text: "Enter the details below to add a new food item."
+                        text_size: [self.parent.width, None]
+                        font_name: app.fonts.body
+                        font_size: app.fonts.size.h3
+                        size: self.texture_size
+                        color: app.color_secondary_text
+                        halign: "center"
+                        valign: "top"
+                        size_hint_y: None
 
+                Widget:
 
+            AnchorLayout:
+                size_hint_y: .8
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(24)
+                    padding: dp(12)
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: name_field
+                            hint_text: "Name"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
 
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        TextInput:
+                            id: price_field
+                            input_type: 'number'
+                            input_filter: 'float'
+                            hint_text: "price"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
 
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: category_field
+                            hint_text: "Category"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
+
+                    BackBox:
+                        size_hint_y: None
+                        height: dp(50)
+                        bcolor: app.color_secondary_bg
+                        radius: [self.height * 0.1]
+                        padding: [dp(12), dp(2)]
+                        FlatField:
+                            id: img_name_field
+                            hint_text: "Image Name"
+                            hint_text_color: app.color_primary_text
+                            font_size: app.fonts.size.h3
+                            multiline: False
+                    RoundedButton:
+                        text: "Upload Photo"
+                        on_release: root.select_photo()
+                        font_size:app.fonts.size.h1
+                        font_name:app.fonts.heading
+                        bcolor:app.color_primary
+                        radius: [self.height * .1]
+                    BackBox:
+                        id:btn_confirm
+                        size_hint_y: None
+                        height: dp(64)
+                        RoundedButton:
+                            id: btn_action
+                            text: "Add" if not root.id_food_item else "Update"
+                            font_name: app.fonts.heading
+                            font_size: app.fonts.size.h1
+                            bcolor: app.color_primary
+                            radius: [self.height * .1]
+                            on_release:
+                                root.add_food_item() if not root.id_food_item else root.update_food_item()
+                                root.dismiss()
+
+                    Widget:
+
+<DeleteFoodItemConfirm>:
+    background:""
+    background_color:[0,0,0,.1]
+    BackBox:
+        orientation:'vertical'
+        spacing:dp(12)
+        padding:dp(14)
+        bcolor:app.color_primary_bg
+        radius:[self.height *.08]
+        size_hint:[None, 0.7]
+        width:self.height
+        BoxLayout:
+            size_hint_y:.6
+            orientation:'vertical'
+            Text:
+                text:'Delete Food Item'
+                font_name:app.fonts.styled
+                font_size:app.fonts.size.extra
+                color:app.color_primary_text
+                halign:'center'
+            Text:
+                text:"Are you sure you want to delete this food item?"
+                halign:"center"
+                font_size:app.fonts.size.h2
+                color:app.color_primary_text
+        AnchorLayout:
+            BoxLayout:
+                size_hint_y:.4
+                spacing:dp(12)
+                size_hint_y:None
+                height:dp(64)
+                FlatButton:
+                    text:"Cancel"
+                    font_size:app.fonts.size.h2
+                    color:app.color_primary
+                    on_release:root.dismiss()
+                RoundedButton:
+                    text: "Yes, Delete"
+                    font_size:app.fonts.size.h2
+                    bcolor:app.color_tertiary
+                    color:rgba("#ffffff")
+                    radius:[self.height * .1]
+                    on_release:root.delete_from_db()

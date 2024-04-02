@@ -1,4 +1,6 @@
 #:import hex kivy.utils.get_color_from_hex
+#:import utils kivy.utils
+
 
 <CategoryButton@MDRoundFlatButton>:
     text_color: "black"
@@ -80,6 +82,20 @@
                     BillHolder:
                         id: bill_holder
                         size_hint_x:0.35
+                        spacing:'12dp'
+                        padding:'12dp'
+                        canvas.before:
+                            Color:
+                                rgb: utils.get_color_from_hex('#ffffc9')
+                            RoundedRectangle:
+                                pos:self.pos
+                                size:self.size
+                                radius: [dp(20)]
+
+
+
+
+
 
 
 

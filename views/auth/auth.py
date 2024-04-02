@@ -48,8 +48,10 @@ class Auth(BoxLayout):
 
             if staff_type == 'waiter':
                 App.get_running_app().root.ids.scrn_mngr.current = "scrn_home"
+                self.ids.password_field.text= ""
             elif staff_type == 'admin':
                 App.get_running_app().root.ids.scrn_mngr.current = "home_admin"
+                self.ids.password_field.text= ""
             else:
                 self.show_authentication_failed_dialog()
         else:
