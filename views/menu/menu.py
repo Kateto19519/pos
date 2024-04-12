@@ -1,4 +1,8 @@
+import csv
+import string
 from datetime import datetime
+import random
+
 import mysql
 import qrcode
 from kivy._event import defaultdict
@@ -16,7 +20,8 @@ from kivymd.uix.scrollview import MDScrollView
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from db_connector import mydb
-from views.posApp import posApp
+from views.error_window.ErrorMessageDialog import ErrorMessageDialog
+from views.posApp import posApp, PosApp
 
 Builder.load_file('views/menu/menu.kv')
 
@@ -64,6 +69,10 @@ class MenuItem(MDBoxLayout):
 
         bill_holder = self.parent.parent.parent.bill_holder_inst
         bill_holder.add_to_bill(self.name, self.price)
+
+    @classmethod
+    def reset_selected_items(cls):
+        cls.selected_items = []
 
 
 class Menu(MDScreen):
@@ -142,6 +151,28 @@ class BillHolder(MDScrollView):
 
         # Add the button layout to the bill layout
         self.bill_layout.add_widget(self.button_layout)
+    def create_widgets(self):
+        # Create receipt label
+        self.receipt_label = MDLabel(text="Receipt", size_hint_y=None, height=dp(40), font_size='40dp',
+                                     theme_text_color="Error", halign="center")
+        self.bill_layout.add_widget(self.receipt_label)
+
+        # Horizontal layout to hold buttons
+        self.button_layout = MDBoxLayout(size_hint_y=None, height=dp(40), spacing='10dp')
+
+        # Button for finishing
+        self.finish_button = MDRectangleFlatIconButton(icon='printer-pos', text="Finish", on_press=self.generate_pdf)
+
+        # Add the buttons to the button layout
+        self.button_layout.add_widget(self.finish_button)
+
+        # Add the button layout to the bill layout
+        self.bill_layout.add_widget(self.button_layout)
+
+        # Create total label
+        self.total_label = MDLabel(text="Total: $0.00", size_hint=(None, None), size=(dp(200), dp(40)),
+                                   theme_text_color="Error")
+        self.bill_layout.add_widget(self.total_label)
 
     def generate_pdf(self, instance):
         try:
@@ -226,13 +257,78 @@ class BillHolder(MDScrollView):
             c.save()
 
             print('PDF generated successfully.')
+            ErrorMessageDialog().show_dialog("Successful!", "The bill is successfully generated.")
+
+            # Adding information to the database
+            mydb = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                port=8111,
+                database="pos_system"
+            )
+
+            cursor = mydb.cursor()
+
+            # Hardcoded table and waiter ID
+            table = int(PosApp().get_table())
+            waiter_id=self.get_waiter_id()
+
+            # Generate a unique order number
+            order_num = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+
+            # Insert into the order table
+            order_insert_query = "INSERT INTO `order` (order_num, order_date, table_id, waiter_id, total_sum) VALUES (%s, %s, %s, %s, %s)"
+            order_values = (order_num, current_date_time, table, waiter_id, total)
+
+            cursor.execute(order_insert_query, order_values)
+
+            # Commit changes
+            mydb.commit()
+            print("Order successfully added to the database.")
+
+            # Insert each food item ID into the order_items table
+            for food_id in [item['id_food_item'] for item in MenuItem.selected_items]:
+                order_item_insert_query = "INSERT INTO order_items (table_id, food_item_id) VALUES (%s, %s)"
+                order_item_values = (table, food_id)
+                cursor.execute(order_item_insert_query, order_item_values)
+
+            # Commit changes
+            mydb.commit()
+            print("Order items successfully added to the database.")
+
+            # Close cursor and connection
+            cursor.close()
+
+            # Reset selected items after finishing the order
+            MenuItem.reset_selected_items()
+
+            # Clear bill layout and reset total label
+            self.bill_layout.clear_widgets()
+            self.total_label.text = "Total: $0.00"
+            self.create_widgets()
 
 
+            # Navigate back to the home screen
             app = App.get_running_app()
             app.root.ids.scrn_mngr.current = 'scrn_home'
 
         except Exception as e:
-            print("Failed to generate PDF:", e)
+            print("Failed to generate PDF or add order to the database:", e)
+            ErrorMessageDialog().show_dialog("Error!", "Failed to generate bill or create order.")
+
+    def get_waiter_id(self):
+        try:
+            with open('user_info.csv', mode='r') as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    # Assuming the waiter ID is at position 2 (index 1)
+                    waiter_id = int(row[2])
+                    return waiter_id
+        except Exception as e:
+            print(f"Error reading CSV file: {e}")
+            ErrorMessageDialog().show_dialog("Error!", "An error occured.")
+
 
     def add_to_bill(self, name, price):
         label = MDLabel(text=f"{name} - ${price}", size_hint=(None, None), size=(dp(200), dp(40)))
@@ -250,45 +346,3 @@ class BillHolder(MDScrollView):
 
         self.bill_layout.add_widget(self.total_label)
 
-
-    def add_to_db(self, instance):
-        try:
-            print("Adding order to the database...")
-
-            mydb = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="",
-                port=8111,
-                database="pos_system"
-            )
-
-            cursor = mydb.cursor()
-
-            # Hardcoded table
-            table = posApp.get_table()
-
-            # List to store food item IDs
-            food_ids = [item['id_food_item'] for item in MenuItem.selected_items]  # Extract IDs from dictionaries
-
-            print("Food IDs:", food_ids)
-
-            # Insert each food item ID into the order_items table
-            for food_id in food_ids:
-                sql = "INSERT INTO order_items (`table_id`, `food_item_id`) VALUES (%s, %s)"
-                val = (table, food_id)
-                cursor.execute(sql, val)
-
-            # Commit changes
-            mydb.commit()
-            print("Order successfully added to the database.")
-
-            # Close cursor and connection
-            cursor.close()
-
-            # Optional: Clear the bill layout and reset total label after finishing the order
-            self.bill_layout.clear_widgets()
-            self.total_label.text = "Total: $0.00"
-
-        except mysql.connector.Error as error:
-            print("Failed to insert record into MySQL table:", error)
