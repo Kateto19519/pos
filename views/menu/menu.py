@@ -1,5 +1,6 @@
 import csv
 import string
+import subprocess
 from datetime import datetime
 import random
 
@@ -12,7 +13,7 @@ from kivy.metrics import dp
 from kivy.properties import ObjectProperty
 from kivy.uix.image import Image
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.button import MDFlatButton, MDIconButton, MDRectangleFlatIconButton
+from kivymd.uix.button import MDFlatButton, MDIconButton, MDRectangleFlatIconButton, MDFillRoundFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
@@ -145,9 +146,12 @@ class BillHolder(MDScrollView):
 
         # Button for finishing
         self.finish_button = MDRectangleFlatIconButton(icon='printer-pos', text="Finish", on_press=self.generate_pdf)
+        # Button for deleting items
+        self.delete_button = MDRectangleFlatIconButton(icon='delete', text="Delete", on_press=self.delete_item)
 
         # Add the buttons to the button layout
         self.button_layout.add_widget(self.finish_button)
+        self.button_layout.add_widget(self.delete_button)
 
         # Add the button layout to the bill layout
         self.bill_layout.add_widget(self.button_layout)
@@ -163,8 +167,12 @@ class BillHolder(MDScrollView):
         # Button for finishing
         self.finish_button = MDRectangleFlatIconButton(icon='printer-pos', text="Finish", on_press=self.generate_pdf)
 
+        # Button for deleting items
+        self.delete_button = MDRectangleFlatIconButton(icon='delete', text="Delete", on_press=self.delete_item)
+
         # Add the buttons to the button layout
         self.button_layout.add_widget(self.finish_button)
+        self.button_layout.add_widget(self.delete_button)
 
         # Add the button layout to the bill layout
         self.bill_layout.add_widget(self.button_layout)
@@ -173,6 +181,14 @@ class BillHolder(MDScrollView):
         self.total_label = MDLabel(text="Total: $0.00", size_hint=(None, None), size=(dp(200), dp(40)),
                                    theme_text_color="Error")
         self.bill_layout.add_widget(self.total_label)
+
+    def delete_item(self, instance):
+        # Clear all menu items from the bill layout
+        self.bill_layout.clear_widgets()
+        self.create_widgets()
+        # Reset total to $0.00
+        self.total_label.text = "Total: $0.00"
+        MenuItem.reset_selected_items()
 
     def generate_pdf(self, instance):
         try:
@@ -255,6 +271,12 @@ class BillHolder(MDScrollView):
             # Save the PDF
             c.showPage()
             c.save()
+
+            # Open the generated PDF file
+            pdf_file_path = 'order_receipt.pdf'
+            #subprocess.Popen(['xdg-open', pdf_file_path])  #  Linux
+            # subprocess.Popen(['open', pdf_file_path])  #  macOS
+            subprocess.Popen(['start', pdf_file_path], shell=True)  # For Windows
 
             print('PDF generated successfully.')
             ErrorMessageDialog().show_dialog("Successful!", "The bill is successfully generated.")

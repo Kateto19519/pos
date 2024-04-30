@@ -1,3 +1,5 @@
+import os
+import shutil
 from threading import Thread
 import mysql.connector
 from kivy.clock import mainthread, Clock
@@ -8,6 +10,8 @@ from kivy.uix.modalview import ModalView
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
+from kivymd.uix.filemanager import MDFileManager
+
 from db_connector import mydb
 from decimal import Decimal
 
@@ -20,6 +24,32 @@ class Stocks(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(self.render, .1)
+        self.file_manager = MDFileManager(
+            exit_manager=self.exit_manager,
+            select_path=self.select_path,
+            ext=[".png", ".jpg", ".jpeg"]  # Restrict to PNG and JPEG files
+        )
+
+    def open_file_manager(self):
+        initial_directory = os.path.join(os.path.expanduser("~"), "PycharmProjects", "pos", "assets", "imgs", "food_items")
+        self.file_manager.show(initial_directory)  # Set initial directory
+
+    def exit_manager(self, *args):
+        self.file_manager.close()
+
+    def select_path(self, path):
+        print("Selected Path:", path)  # Handle the selected path here
+        # Copy the selected image file to the desired directory
+        if os.path.isfile(path):
+            # Get the filename
+            filename = os.path.basename(path)
+            # Specify the destination directory
+            dest_directory = os.path.join(os.path.expanduser("~"), "PycharmProjects", "pos", "assets", "imgs", "food_items", filename)
+            # Copy the file
+            shutil.copy(path, dest_directory)
+            print("File copied successfully to:", dest_directory)
+        self.file_manager.close()
+
 
     def render(self, _):
         t1 = Thread(target=self.get_food_items, daemon=True)

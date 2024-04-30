@@ -14,8 +14,6 @@ from views.error_window.ErrorMessageDialog import ErrorMessageDialog
 Builder.load_file("views/posApp/posApp.kv")
 
 
-
-
 class PosApp(MDScreen):
 
     def __init__(self, **kw):

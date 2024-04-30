@@ -69,12 +69,11 @@
     BoxLayout:
         spacing: dp(12)
         size_hint_y: .7
-        BackBox:
-            bcolor:app.color_secondary_bg
-            size_hint_x:.7
+#        BackBox:
+#            bcolor:app.color_secondary_bg
+#            size_hint_x:.7
         BackBox:
             bcolor:app.color_primary_bg
-            size_hint_x:.3
             orientation:'vertical'
             BackBox:
                 bcolor:app.color_primary
@@ -84,47 +83,20 @@
                 spacing:dp(12)
                 padding:[dp(12), 2]
                 Text:
-                    text:"Top 10 Best Sellers"
+                    text:"Top 5 Best Sellers"
                     color:app.color_primary_bg
                     font_size:app.fonts.size.h2
                     size_hint_x: .7
+
             ScrollView:
+                id: best_sellers_scrollview
                 GridLayout:
                     size_hint_y: None
                     height: self.minimum_height
                     padding: dp(12)
                     spacing: dp(5)
                     cols:1
-                    Text:
-                        text: "Kebap"
-                        size_hint_y: None
-                        height: dp(30)
-                        canvas.before:
-                            Color:
-                                rgb: app.color_secondary_bg
-                            Rectangle:
-                                pos: self.pos
-                                size: [self.size[0], dp(2)]
-                    Text:
-                        text: "Chicken soup"
-                        size_hint_y: None
-                        height: dp(30)
-                        canvas.before:
-                            Color:
-                                rgb: app.color_secondary_bg
-                            Rectangle:
-                                pos: self.pos
-                                size: [self.size[0], dp(2)]
-                    Text:
-                        text: "Coca Cola"
-                        size_hint_y: None
-                        height: dp(30)
-                        canvas.before:
-                            Color:
-                                rgb: app.color_secondary_bg
-                            Rectangle:
-                                pos: self.pos
-                                size: [self.size[0], dp(2)]
+
 
 <StatsBox@BoxLayout>:
     bcolor: rgba("#ffffff")

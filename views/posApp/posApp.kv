@@ -81,28 +81,20 @@
             right_action_items:[["assets/imgs/logo-light.png", lambda x: None]]
 
         MDNavigationLayout:
-
             MDScreenManager:
                 id: screen_manager
-
                 MDScreen:
                     name: "tables"
-
-
                     Tables:
                         rows: 8 if Window.width < 500 else 3
                         cols: 2 if Window.width <500 else 4
                         spacing:'70dp'
                         padding:'70dp'
-
-
                 MDScreen:
                     name: "scr 2"
-
                     MDLabel:
                         text: "Screen 2"
                         halign: "center"
-
             MDNavigationDrawer:
                 md_bg_color: "#2372d9"
                 id: nav_drawer

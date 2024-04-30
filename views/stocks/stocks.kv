@@ -6,7 +6,6 @@
         size_hint_y: None
         height: dp(54)
         MDBoxLayout:
-        MDBoxLayout:
             padding: [dp(12), 0]
             size_hint_x: .1
             bcolor: app.color_primary
@@ -22,6 +21,25 @@
                         line_color: app.color_primary
                         md_bg_color: app.color_primary
                         on_release: root.add_new_food_item()
+    MDBoxLayout:
+        size_hint_y: None
+        height: dp(54)
+        MDBoxLayout:
+            padding: [dp(12), 0]
+            size_hint_x: .1
+            bcolor: app.color_primary
+            RelativeLayout:
+                AnchorLayout:
+                    anchor_x: 'left'
+                    MDRoundFlatIconButton:
+                        text: "Upload Photo"
+                        icon: 'image'
+                        icon_color: "white"
+                        text_color: "white"
+                        width: self.height
+                        line_color: app.color_primary
+                        md_bg_color: app.color_primary
+                        on_release: root.open_file_manager()
 
     MDBoxLayout:
         id: bx_table
@@ -221,7 +239,6 @@
                             hint_text_color: app.color_primary_text
                             font_size: app.fonts.size.h3
                             multiline: False
-
                     BackBox:
                         id:btn_confirm
                         size_hint_y: None

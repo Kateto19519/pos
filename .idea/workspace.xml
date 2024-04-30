@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c20bcaf-6729-42ad-840d-f523cda50087" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/views/error_window/ErrorMessageDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.kv" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/logo-light.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/logo-light.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order_receipt.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/order_receipt.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qr_code.png" beforeDir="false" afterPath="$PROJECT_DIR$/qr_code.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/dashboard.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home_admin/home_admin.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/home_admin/home_admin.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/menu/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/posApp/posApp.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/posApp/posApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/posApp/posApp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/stocks/stocks.kv" beforeDir="false" afterPath="$PROJECT_DIR$/views/stocks/stocks.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/stocks/stocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/stocks/stocks.py" afterDir="false" />
@@ -44,15 +47,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dc248/PycharmProjects/pos&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/dc248/PycharmProjects/pos",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dc248\PycharmProjects\pos\assets\imgs" />
